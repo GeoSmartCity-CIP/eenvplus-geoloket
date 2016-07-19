@@ -1,0 +1,11 @@
+<div style="z-index: 9999;">
+  <h3>{{ title }}</h3>
+  <div id="info" >
+    <div ng-bind-html="content"></div>
+  </div>
+  <hr/>
+  <button ng-show="showOK" ng-click="closeThisDialog( true )">
+      <span class="fa fa-check" ></span> OK</button>
+  <button ng-show="showCancel" ng-click="closeThisDialog( false )">
+      <span class="fa fa-times-circle" ></span> Sluiten</button>
+</div>

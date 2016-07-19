@@ -1,0 +1,46 @@
+{
+  "name": "tink-core",
+  "version": "1.12.4",
+  "main": [
+    "dist/tink.css"
+  ],
+  "ignore": [
+    ".*",
+    "**/.*",
+    "assets",
+    "Gruntfile.js",
+    "package.json",
+    "src",
+    "test",
+    "*.sublime-project"
+  ],
+  "devDependencies": {
+    "angular": "~1.4.3",
+    "angular-resource": "~1.4.3",
+    "angular-cookies": "~1.4.3",
+    "angular-sanitize": "~1.4.3",
+    "angular-animate": "~1.4.3",
+    "angular-touch": "~1.4.3",
+    "angular-route": "~1.4.3",
+    "angular-messages": "~1.4.3",
+    "tink-navigation-angular": "latest",
+    "tink-interactive-table-angular": "latest",
+    "tink-accordion-angular": "latest",
+    "tink-modal-angular": "latest",
+    "tink-datepicker-angular": "latest",
+    "tink-range-datepicker-angular": "latest",
+    "tink-timepicker-angular": "latest"
+  },
+  "authors": [
+    "Jasper Van Proeyen",
+    "Vincent Bouillart",
+    "Lieven Van Gestel"
+  ],
+  "description": "Tink is an in-house developed easy-to-use front end framework for quick prototyping and simple deployment of all kinds of websites and apps, keeping a uniform and consistent look and feel.",
+  "homepage": "http://tink.digipolis.be",
+  "keywords": [
+    "tink",
+    "core",
+    "sass"
+  ]
+}

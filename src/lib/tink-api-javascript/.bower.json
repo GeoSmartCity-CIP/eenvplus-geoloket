@@ -1,0 +1,30 @@
+{
+  "name": "tink-api-javascript",
+  "version": "4.0.0",
+  "main": [
+    "dist/tink-api-javascript.js"
+  ],
+  "ignore": [
+    ".*",
+    "**/.*",
+    "Gruntfile.js",
+    "package.json",
+    "src",
+    "test",
+    "*.sublime-project"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/tinkkit/tink-api-javascript",
+  "_release": "4.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v4.0.0",
+    "commit": "8efdaa2f8473ef5ccded3fb7418548656d60b04a"
+  },
+  "_source": "https://github.com/tinkkit/tink-api-javascript.git",
+  "_target": "*",
+  "_originalSource": "tink-api-javascript"
+}

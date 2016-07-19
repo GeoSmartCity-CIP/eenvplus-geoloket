@@ -1,0 +1,83 @@
+/**
+ * Functions
+ * ----------------------------------------------------------------
+ */
+
+/**
+ * Strip units from any number
+ */
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+/**
+ *  Convert pixels to em
+ */
+@function em($px, $base: 16) {
+    @return (strip-units($px) / strip-units($base)) * 1em;
+}
+
+/**
+ *  Convert pixels to rem
+ */
+@function calculate-rem($px, $base: $font-size-base) {
+    @return (strip-units($px) / strip-units($base)) * 1rem;
+}
+
+/**
+ * Return a space separated list as rem values
+ * e.g. padding: rem(10 20 10 15);
+ */
+@function rem($values, $context: $font-size-base) {
+  $v: "";
+  @each $value in $values {
+    @if type_of($value) == "number" {
+      $v: $v + calculate-rem($value, $context) + " ";
+    } @else {
+      $v: $v + $value + " ";
+    }
+  }
+  @return unquote($v);
+}
+
+/**
+ * image-url function (cfr. Compass)
+ */
+@function image-url($img) {
+  @return unquote('url(../images/#{$img})');
+}
+
+/**
+ * All functions needed for handling z-index
+ * - check for nested keys
+ * - get a nested list item
+ * - return a z-index list property
+ */
+
+@function map-has-nested-keys($map, $keys...) {
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+
+  @return true;
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+@function layer($layers...) {
+  @if not map-has-nested-keys($z-layers, $layers...) {
+    // @warn 'There is no item "#{inspect($layers...)}" in this list; choose one of: #{$layers}';
+    @warn 'No layer found for "#{inspect($layers...)}" in $z-layers map. Property omitted.';
+  }
+
+  @return map-deep-get($z-layers, $layers...);
+}

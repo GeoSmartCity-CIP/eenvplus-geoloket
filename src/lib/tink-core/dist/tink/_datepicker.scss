@@ -1,0 +1,239 @@
+/**
+ * Component: datepicker
+ * --------------------------------------------------
+ * - single
+ * - range
+ */
+
+
+.datepicker-input-fields {
+  min-width: rem(110); // Prevents the datepicker from collapsing
+  position: relative;
+
+  .datepicker-icon {
+    right: 1px;
+    z-index: layer("pseudo");
+  }
+
+  .faux-input {
+    position: relative;
+    overflow-y: visible;
+    text-align: left;
+
+    &:focus {
+      z-index: layer("base");
+    }
+  }
+
+  @include mq($screen-sm) {
+    #firstDateElem {
+      .faux-input {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
+    #lastDateElem {
+      .faux-input {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+      }
+    }
+  }
+}
+
+.datepicker-icon {
+  bottom: 1px;
+  color: $datepicker-icon-color;
+  cursor: pointer;
+  padding: rem($padding-base-vertical ($padding-base-horizontal / 1.5));
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  transition: color $animation-speed linear;
+
+  &:hover,
+  &:active {
+    color: $datepicker-icon-hover-color;
+  }
+}
+
+
+.datepicker,
+.datepickerrange {
+  background: $datepicker-bg-color;
+  border-radius: rem($input-border-radius);
+  box-shadow: 0 0 2px rgba(0,0,0,.6);
+  color: $datepicker-color;
+  margin-top: 2px;
+  position: relative;
+  top: rem($input-height-base);
+  z-index: layer("popover");
+
+  .btn {
+    background: $datepicker-btn-bg-color;
+    border: 1px solid $datepicker-btn-border-color;
+    color: $datepicker-btn-color;
+    min-width: 20px;
+    padding: rem($datepicker-btn-padding);
+    width: 100%;
+
+    @include mq($screen-md) {
+      min-width: 38px;
+    }
+
+    &:hover {
+      background: $datepicker-btn-hover-bg-color;
+      border-color: $datepicker-btn-hover-border-color;
+      color: $datepicker-btn-hover-color;
+    }
+
+    &.btn-today {
+      background: $datepicker-btn-today-bg-color;
+      border-color: $datepicker-btn-today-border-color;
+      color: $datepicker-btn-today-color;
+
+      &:hover {
+        background: $datepicker-btn-today-hover-bg-color;
+        border-color: $datepicker-btn-today-hover-border-color;
+        color: $datepicker-btn-today-hover-color;
+      }
+    }
+
+    &.btn-selected {
+      background: $datepicker-btn-selected-bg-color;
+      border-color: $datepicker-btn-selected-border-color;
+      color: $datepicker-btn-selected-color;
+
+      &-clicked {
+        background: $datepicker-btn-selected-clicked-bg-color;
+        border-color: $datepicker-btn-selected-clicked-border-color;
+        color: $datepicker-btn-selected-clicked-color;
+      }
+    }
+
+    &.btn-info {
+      background: $datepicker-btn-selected-bg-color;
+      border-color: $datepicker-btn-selected-border-color;
+      color: $datepicker-btn-selected-color;
+    }
+
+    &.btn-grayed {
+      background: $datepicker-btn-grayed-bg-color;
+      border-color: $datepicker-btn-grayed-border-color;
+      color: $datepicker-btn-grayed-color;
+
+      &:hover {
+        background: $datepicker-btn-grayed-hover-bg-color;
+        border-color: $datepicker-btn-grayed-hover-border-color;
+        color: $datepicker-btn-grayed-hover-color;
+      }
+
+      &-selected {
+        background: $datepicker-btn-grayed-selected-bg-color;
+        border-color: $datepicker-btn-grayed-selected-border-color;
+        color: $datepicker-btn-grayed-selected-color;
+
+        &-clicked {
+          background: $datepicker-btn-grayed-selected-clicked-bg-color;
+          border-color: $datepicker-btn-grayed-selected-clicked-border-color;
+          color: $datepicker-btn-grayed-selected-clicked-color;
+        }
+      }
+    }
+  }
+
+
+  table {
+    background: $datepicker-bg-color;
+    // height: 100%; // doesn't seem to have any function since the height is defined by the content
+    margin-bottom: 0;
+    table-layout: fixed;
+    // width: 100%; // 100% width is already defined by basic table styling
+  }
+
+  .table-responsive {
+    border: none;
+  }
+
+  td,
+  th {
+    background: none;
+    border: none;
+    color: $datepicker-weekdays-color;
+    font-size: rem(13);
+    padding: rem($table-cell-padding / 6);
+    text-align: center;
+
+    button {
+      font-size: rem(13) !important;
+    }
+    .text-strong {
+      color: $black;
+    }
+  }
+}
+
+.datepicker {
+  // padding: 1.5%;
+  padding: rem($datepicker-padding);
+  position: absolute;
+  width: rem(260); // removed min-width
+
+  &.aligns-right {
+    right: 0;
+  }
+}
+
+.datepickerrange {
+  position: relative;
+
+  @include mq($screen-xs) {
+    min-width: 400px;
+  }
+  @include mq($screen-sm) {
+    min-width: 520px;
+  }
+  @include mq($screen-md) {
+    min-width: 640px;
+  }
+}
+
+.datepicker-days th {
+  border-bottom: rem($datepicker-days-padding-vertical) solid $datepicker-bg-color;
+  padding: rem($datepicker-days-padding-vertical 0);
+  background-color: $datepicker-days-bg-color;
+}
+
+.datepickerrange-header-left,
+.datepickerrange-header-right {
+  // line-height: rem(30);
+  line-height: rem(24); // adjusted line-height to center the labels
+  overflow: hidden;
+  padding: rem($table-cell-padding / 4);
+}
+
+.datepickerrange-left,
+.datepickerrange-right {
+  padding: 1.5%;
+  width: 100%;
+
+  @include mq($screen-xs) {
+    padding: 1.5% 2.5%;
+    width: 50%;
+  }
+}
+
+.datepicker-nav {
+  border-bottom: rem($datepicker-nav-padding) solid $datepicker-bg-color;
+}
+
+.selects-current-date {
+  border-top: rem($datepicker-nav-padding) solid $datepicker-bg-color;
+  > tr {
+    text-align: center;
+    button {
+      padding: rem($datepicker-btn-padding 8);
+    }
+  }
+}

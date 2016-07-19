@@ -1,0 +1,101 @@
+/**
+ * Popovers
+ * --------------------------------------------------
+ * Arrows are moved to a separate component
+ */
+
+
+.popover {
+  @include arrow($popover-arrow-width, $popover-arrow-color, $popover-arrow-offset, $popover-arrow-border-color);
+
+  background-color: $popover-bg-color;
+  background-clip: padding-box;
+  border: 1px solid $popover-border-color;
+  border-radius: $border-radius-large;
+  font-family: $font-family-base;
+  font-size: rem($font-size-base);
+  font-weight: normal;
+  line-height: $line-height-base;
+  padding: rem($popover-padding);
+  position: relative;
+  white-space: normal;
+  z-index: layer("popover");
+
+  &-animation {
+    transition: bottom $animation-speed linear, left $animation-speed linear, right $animation-speed linear, top $animation-speed linear;
+  }
+
+
+  // Arrows moved to a separate file (as component)
+
+
+  &-header {
+    // background-color: #bada55;
+    margin: rem($padding-base-vertical 0 $padding-base-vertical * 2);
+    text-align: center;
+  }
+
+  &-header-avatar {
+    @extend .center-block;
+    width: rem(50);
+  }
+
+  &-header-title {
+    font-size: $font-size-base;
+    font-weight: bold;
+    margin: rem($padding-base-vertical 0 0);
+  }
+
+  &-list-buttons {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    text-align: left;
+
+    li {
+      margin-bottom: rem(5);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        background: $popover-button-background-color;
+        color: $popover-button-color;
+        display: block;
+        padding: $padding-base-vertical $padding-base-horizontal;
+        text-decoration: none;
+
+        &:hover {
+          background-color: $popover-button-hover-background-color;
+        }
+      }
+    }
+  }
+
+  &-menu-list {
+    ul {
+      @extend .list-unstyled;
+      > hr {
+        border-top-color: $hr-border;
+        margin: rem($line-height-computed / 4) 0;
+      }
+
+      li {
+        padding: rem(5);
+
+        &:hover:not([disabled]) {
+          background-color: $popover-button-hover-background-color;
+          cursor: pointer;
+          transition: background-color linear $animation-speed;
+        }
+
+        &[disabled] {
+          color: $popover-disabled-color;
+          cursor: not-allowed;
+          user-select: none;
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ module be.vmm.eenvplus.Bootstrap {
     'use strict';
 
     export var APP_NAME:string = 'ga';
+    export var CROWDSOURCE:string = 'csApp';
 
     /**
      * Initiate boot sequence.
@@ -29,7 +30,7 @@ module be.vmm.eenvplus.Bootstrap {
 
         keycloak
             .init({onLoad: 'check-sso'})
-            .success(_.partial(angular.bootstrap, document, [APP_NAME]))
+            .success(_.partial(angular.bootstrap, document, [APP_NAME, CROWDSOURCE]))
             .error(_.partial(alert, 'Failed to authenticate'));
     }
 

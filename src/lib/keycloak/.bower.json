@@ -1,6 +1,6 @@
 {
   "name": "keycloak",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "main": "dist/keycloak.js",
   "ignore": [
     "**/.*"
@@ -13,15 +13,15 @@
     "oauth2",
     "authentication"
   ],
+  "license": "Apache-2.0",
   "homepage": "https://github.com/keycloak/keycloak-js-bower",
-  "_release": "1.0.4",
+  "_release": "2.0.0",
   "_resolution": {
     "type": "version",
-    "tag": "1.0.4",
-    "commit": "0dadfd62aca6613e07f9abd54badded590ba9fd2"
+    "tag": "2.0.0",
+    "commit": "19f8a94fd35830c805cf15b73dbc83d75c2c0c56"
   },
-  "_source": "git://github.com/keycloak/keycloak-js-bower.git",
-  "_target": "~1.0.4",
-  "_originalSource": "keycloak",
-  "_direct": true
+  "_source": "https://github.com/keycloak/keycloak-js-bower.git",
+  "_target": "~2.0.0",
+  "_originalSource": "keycloak"
 }

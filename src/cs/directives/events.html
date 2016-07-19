@@ -1,0 +1,47 @@
+<!--template for list of events-->
+ <ul class="nav-aside-list" role="sidenav" ng-controller="eventController" >
+
+     <li >
+
+      <div class="callout-danger margin-left margin-right" ng-show="gscWarning" >
+         <p><strong>Error:</strong> 
+          Kan niet verbinden met Crowdsource server, de api meld: <em>{{gscWarning}}<em> </p>
+      </div>
+      
+      <tink-accordion data-start-open="false" data-one-at-a-time="true" ng-hide="gscWarning" >
+        <span ng-repeat="event in events | limitTo:pageSize:page*pageSize">
+          <tink-accordion-panel data-is-collapsed="true" >
+            <data-header> {{event.description | limitTo:16 }}{{ event.description.length > 16 ? ' ...':''}} </data-header>
+            <data-content>
+                <div ng-click="zoomTo(event.location)">
+                      <h5> <span class="margin-bottom fa fa-search"></span> {{event.description}}</h5>
+                </div>
+
+                <span>Tijd: <em>{{ event.datetime | date:'yyyy-MM-dd HH:mm:ss' }}</em></span><br/>
+                <span>Status: <em>{{ event.status }}</em></span><br/>
+                <span>Prioriteit: <em>{{ event.priority }}</em></span><br/>
+
+                <img ng-src="{{mediafile}}" class="img-responsive" alt="media" ng-repeat="mediafile in event.media"
+                     ng-click="maximizeImage(event.description ,mediafile)" onerror="imgError(this);" />
+
+            </data-content>
+          </tink-accordion-panel>
+         </span>
+       </tink-accordion>
+     </li>
+
+     <li >
+        <hr/><!--paging if more then 5 records-->
+        <div class="margin-left" ng-show="numberOfPages() > 1"  >
+            <button type="button" ng-disabled="page == 0" ng-click="page=page-1">
+                Vorige
+            </button>
+            <button type="button" ng-disabled="page >= events.length/pageSize - 1" 
+                    ng-click="page=page + 1">
+                Volgende
+            </button>
+            {{page+1}}/{{numberOfPages()}}
+        </div>
+      
+     <li>
+ </ul>

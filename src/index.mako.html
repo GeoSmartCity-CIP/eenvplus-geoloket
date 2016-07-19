@@ -8,7 +8,7 @@ itemscope itemtype="http://schema.org/WebApplication"
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=9,IE=10,IE=edge,chrome=1"/>
 {% if device == 'desktop' %}
-    <title translate="page_title">map.geo.admin.ch</title>
+    <title translate="page_title">e-envplus</title>
 {% else %}
     <title>geo.admin.ch</title>
 {% endif %}
@@ -34,33 +34,11 @@ itemscope itemtype="http://schema.org/WebApplication"
     <link rel="apple-touch-icon" sizes="152x152" href="${versionslashed}img/touch-icon-bund-152x152.png"/>
 
     <!-- Description is translated 'by hand' in the MainController -->
-    <meta name="description" content="geo.admin.ch ist die Geoinformationsplattform der Schweizerischen Eidgenossenschaft. // geo.admin.ch est la plateforme de géoinformation de la Confédération suisse."/>
-    <meta name="keywords" content="maps Switzerland, map viewer, Confederation, geodata, public platform, geographical information, geoportal, orthophotos, geolocation, geoinformation, Geodaten, Geoinformation, Bund, Plattform, Karte, Kartendienst, Kartenviewer"/>
-    <meta name="news_keywords" content="Maps of Switzerland"/>
-
-    <!-- Open Graph metas SMO -->
-    <meta property="og:site_name" content="geo.admin.ch"/>
-    <meta property="og:title" content="Swiss Geoportal"/>
-    <meta property="og:description" content="geo.admin.ch ist die Geoinformationsplattform der Schweizerischen Eidgenossenschaft. // geo.admin.ch est la plateforme de géoinformation de la Confédération suisse."/>
-    <meta property="og:type" content="WebApplication"/>
-    <meta property="og:url" content="http://map.geo.admin.ch"/>
-    <meta property="og:image" content="${versionslashed}img/logo_geoportal.png"/>
-
-    <!-- Twitter Card Infos -->
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:site" content="@swiss_geoportal"/>
-    <meta name="twitter:creator" content="@swiss_geoportal"/>
-    <meta name="twitter:title" content="geo.admin.ch"/>
-    <meta name="twitter:description" content="geo.admin.ch ist die Geoinformationsplattform der Schweizerischen Eidgenossenschaft. // geo.admin.ch est la plateforme de géoinformation de la Confédération suisse."/>
-    <meta name="twitter:image" content="${versionslashed}img/logo_geoportal.png"/>
-    <meta name="twitter:url" content="http://map.geo.admin.ch"/>
-
-    <!-- Facebook Specific fb:admins and fb.appid -->
-
-    <!-- Google+ Specific Tags -->
-    <meta itemprop="name" content="geo.admin.ch"/>
-    <meta itemprop="description" content="geo.admin.ch ist die Geoinformationsplattform der Schweizerischen Eidgenossenschaft. // geo.admin.ch est la plateforme de géoinformation de la Confédération suisse."/>
-    <meta itemprop="image" content="${versionslashed}img/logo_geoportal.png"/>
+    <meta name="description" content=""/>
+    <meta name="keywords"
+          content="maps, map viewer, geodata, public platform, geographical information, geoportal, gis, geolocation"/>
+    <meta name="news_keywords" content="Maps of Flanders"/>
+    <meta itemprop="image" content="img/flgov.png"/>
 
     <script>
       (function(){
@@ -97,6 +75,8 @@ itemscope itemtype="http://schema.org/WebApplication"
     </script>
 
     <link href="${versionslashed}style/app.css" rel="stylesheet"/>
+    <link href="${versionslashed}style/bower.css" rel="stylesheet"/>
+    <link rel="shortcut icon" type="image/x-icon" href="${versionslashed}img/favicon.ico"/>
     <link rel="shortcut icon" type="image/x-icon" href="${versionslashed}img/favicon.ico"/>
   </head>
 
@@ -138,7 +118,7 @@ itemscope itemtype="http://schema.org/WebApplication"
       <div id="logo" class="pull-left">
         <a ng-href="?topic={{topicId}}&lang={{langId}}">
           <div>
-            <img ng-if="langId" ng-src="${versionslashed}img/logo.ch.{{langId}}.png" alt="big_logo" draggable="false"/>
+            <img ng-if="langId" ng-src="${versionslashed}img/flgov.png" alt="big_logo" draggable="false"/>
             <img src="${versionslashed}img/logo.vl.small.png" alt="small_logo" draggable="false"/>
           </div>
           <span>
@@ -175,7 +155,7 @@ itemscope itemtype="http://schema.org/WebApplication"
 {% endif %}
       {# css animation doesn't work on pseudo element, let use this instead #}
       <i id="loader" class="icon-spin icon-refresh"></i>
-      <div class="alert alert-danger alert-offline" translate>offline_sorry</div>
+      <!--  <div class="alert alert-danger alert-offline" translate>offline_sorry</div>-->
     </div> <!-- #header -->
 
     <div tabindex="1" ga-map ga-map-map="map" class="ep-cursor">
@@ -244,6 +224,24 @@ itemscope itemtype="http://schema.org/WebApplication"
 
     <div id="pulldown" ng-show="!globals.offline" ng-class="{'selection-and-catalog-shown': (globals.catalogShown && globals.selectionShown)}">
       <div id="pulldown-content" class="panel-group content ${"in" if device == "desktop" else "collapse"}">
+        
+        <!--crowsource-->
+        <div class="panel crowsource" >
+
+          <a id="csHeading" class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#pulldown-content" href="#csPanel">
+            <i class="visible-collapsed icon-caret-right spacer"></i>
+            <i class="hidden-collapsed icon-caret-down"></i>
+            <img src="cs/img/warning.png" alt="!" height="20" width="20"/>
+            <span >Crowd Source</span>
+          </a>
+          <div id="csPanel" class="panel-collapse collapse">
+            <div class="panel-body" ng-controller="csController">
+               <crowdsource csmap="map" ></crowdsource>
+            </div>
+          </div>
+        </div>
+        <!--/crowsource-->
+        
         <div ep-feature-zoom class="panel zoom include-in-overview"></div>
 
         <div class="panel share">
@@ -651,7 +649,7 @@ itemscope itemtype="http://schema.org/WebApplication"
     <script src="lib/lodash.js"></script>
     <script src="lib/signals/trasys.signals.js"></script>
     <script src="lib/keycloak/dist/keycloak.js"></script>
-
+    
     <!-- Use Closure to load the application scripts -->
     <script>
       window.CLOSURE_NO_DEPS = true;
@@ -661,6 +659,13 @@ itemscope itemtype="http://schema.org/WebApplication"
          need to load base.js ourselves. We keep Closure's base.js file
          around in case we need to test with ol.js or ol-simple.js. -->
     <script src="lib/ol-debug.js"></script>
+    
+    <!--crowsource -->
+    <script src="lib/gsc.js"></script>
+    <script src="crowdsource.js"></script>
+    <script src="bower.js"></script>
+    <!--/crowsource-->
+    
     <!--<script src="lib/closure/base.js"></script>-->
     <script src="eenvplus.js"></script>
     <script src="deps.js"></script>

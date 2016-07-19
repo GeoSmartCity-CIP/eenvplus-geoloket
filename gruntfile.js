@@ -10,6 +10,7 @@ var dir = {
         less: 'src/style/',
         lib: 'src/lib/',
         ts: 'src/ts/',
+        cs: 'src/cs/',
         test: {
             js: 'test/specs/',
             ts: 'test/ts/'
@@ -42,7 +43,7 @@ var dir = {
             layer: '{Layer}',
             request: 'GetTile',
             service: 'WMTS',
-            style: 'default',
+            style: '',
             tileCol: '{TileCol}',
             tileMatrix: '{TileMatrix}',
             tileMatrixSet: 'BPL72VL',
@@ -51,14 +52,22 @@ var dir = {
         },
         dev: {
             versionslashed: '',
-            apache_base_path: 'localhost/',
-            api_url: '//localhost:8080/eenvplus-sdi-services',
+            apache_base_path: '',
+            api_url: '//e-envplus.vmm.be/api',
             auth_url: '//localhost:8080/auth',
-            wmts_url: '//geo.api.agiv.be/geodiensten/raadpleegdiensten/geocache/wmts',
+            wmts_url: '//tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts',
             mode: 'dev'
         }
     };
 
+    cs= { 
+        csIn: [dir.cs + '*.js' , dir.cs + 'directives/*.js' ],
+        csOut: dir.build + "crowdsource.js",
+        gsc: dir.lib + "gsc.js", 
+        jsBower: dir.build + "bower.js",
+        cssBower: dir.build + "style/bower.css"
+    }; 
+    
 vars.dev.wmts_url += '?' + _.map(vars.wmts, urlParam).join('&');
 
 function urlParam(value, key) {
@@ -109,9 +118,37 @@ module.exports = function (grunt) {
         dir: dir,
         file: file,
         src: src,
-
+        cs: cs,
+        pkg: grunt.file.readJSON('package.json'),
+        
+        concat: {
+          options: {
+            stripBanners: true,
+            sourceMap: true
+          },
+          js: {
+            src: cs.csIn,
+            dest: cs.csOut
+          }
+        },
+        bower_concat: {
+              all: {
+                dest: {
+                  'js': cs.jsBower,
+                  'css': cs.cssBower
+                },
+                exclude: ['jquery', 'angular', 'angular-animate', 'angular-resource', 'keycloak', 'ng-file-upload' ],
+                dependencies: {
+                  'tink-api-angular': ['angular' ,'jquery'],
+                },
+                bowerOptions: {
+                  relative: false
+                }
+              }
+        },  
+        
         clean: {
-            dev: [file.dependency, file.tsOut + '*', file.htmlOut, file.htmlOutMobile, file.lessOut]
+            dev: [file.dependency, file.tsOut + '*', file.htmlOut, file.htmlOutMobile, file.lessOut, cs.csOut, cs.csOut + '.map', cs.jsBower,  cs.jsBower+ '.map', cs.cssBower]
         },
 
         closureDepsWriter: {
@@ -130,7 +167,7 @@ module.exports = function (grunt) {
         connect: {
             dev: {
                 options: {
-                    port: 9000,
+                    port: 8000,
                     base: './src'
                 }
             }
@@ -241,7 +278,8 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build-dev',
         'Builds the files required for development',
-        ['ts:dev', 'closureDepsWriter:dev', 'less:dev', 'nunjucks:dev', 'nunjucks:devMobile']
+        ['bower_concat','concat',
+        'ts:dev', 'closureDepsWriter:dev', 'less:dev', 'nunjucks:dev', 'nunjucks:devMobile']
     );
     grunt.registerTask('http', 'Run an http server on development files.', ['connect:dev:keepalive']);
     grunt.registerTask(

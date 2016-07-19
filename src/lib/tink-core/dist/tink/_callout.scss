@@ -1,0 +1,95 @@
+/**
+ * Callout
+ * --------------------------------------------------
+ */
+
+.callout {
+  background: $callout-bgcolor;
+  border: 1px solid $callout-border;
+  border-left: 5px solid $callout-border;
+  border-radius: rem($callout-border-radius);
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  color: $callout-color;
+  // margin: rem(10) 0;
+  padding: rem($padding-large-vertical $padding-large-horizontal);
+
+  a {
+    color: darken($callout-link-color, 8%);
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: darken($callout-link-color, 18%);
+    }
+  }
+
+  hr {
+    border-top-color: $callout-border;
+    margin: rem($line-height-computed / 2) 0;
+  }
+
+  > p:last-child,
+  > ul {
+    margin-bottom: 0;
+  }
+}
+
+.callout-success {
+  @extend .callout;
+  background-color: $callout-bgcolor-success;
+  border-color: $callout-border-success;
+  color: $callout-color-success;
+
+  a {
+    color: darken($callout-link-color-success, 8%);
+
+    &:hover,
+    &:focus {
+      color: darken($callout-link-color-success, 18%);
+    }
+  }
+
+  hr {
+    border-top-color: $callout-border-success;
+  }
+}
+
+.callout-warning {
+  @extend .callout;
+  background-color: $callout-bgcolor-warning;
+  border-color: $callout-border-warning;
+  color: $callout-color-warning;
+
+  a {
+    color: darken($callout-link-color-warning, 8%);
+
+    &:hover,
+    &:focus {
+      color: darken($callout-link-color-warning, 18%);
+    }
+  }
+
+  hr {
+    border-top-color: $callout-border-warning;
+  }
+}
+
+.callout-danger {
+  @extend .callout;
+  background-color: $callout-bgcolor-danger;
+  border-color: $callout-border-danger;
+  color: $callout-color-danger;
+
+  a {
+    color: darken($callout-link-color-danger, 8%);
+
+    &:hover,
+    &:focus {
+      color: darken($callout-link-color-danger, 18%);
+    }
+  }
+
+  hr {
+    border-top-color: $callout-border-danger;
+  }
+}

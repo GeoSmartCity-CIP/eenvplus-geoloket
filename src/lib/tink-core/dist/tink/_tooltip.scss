@@ -1,0 +1,31 @@
+/**
+ * Tooltips
+ * --------------------------------------------------
+ */
+
+.tooltip {
+  @include arrow($tooltip-arrow-width, $tooltip-arrow-color, $tooltip-arrow-offset, $tooltip-arrow-border-color);
+  background-color: $tooltip-bg;
+  border: 1px solid $tooltip-border-color;
+  border-radius: $border-radius-base;
+  box-sizing: border-box;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .07);
+  color: $tooltip-color;
+  display: block;
+  font-family: $font-family-base;
+  font-size: rem($font-size-small);
+  font-weight: normal;
+  line-height: $line-height-base;
+  max-width: rem($tooltip-max-width);
+  padding: ($padding-base-vertical*1/2 $padding-base-horizontal*2/3);
+  position: relative;
+  text-decoration: none;
+  white-space: normal;
+  z-index: layer("popover");
+
+  .close {
+    color: $tooltip-color;
+    display: block;
+    padding: ($padding-large-vertical 0);
+  }
+}

@@ -1,0 +1,110 @@
+// /**
+//  * Pagination
+//  * --------------------------------------------------
+//  */
+
+
+.table-sort-options {
+  overflow: auto;
+}
+
+// /**
+//  * Left
+//  */
+
+.table-sort-info {
+  display: block;
+  margin: rem($line-height-computed 8 $line-height-computed 0);
+  text-align: center;
+
+  @include mq($screen-md) {
+    display: inline-block;
+    float: left;
+  }
+
+  .select {
+    border-left: 1px solid;
+    display: inline-block;
+    margin: rem(0 0 0 8);
+    padding: rem(0 0 0 12);
+
+    select {
+      display: inline-block;
+      height: auto;
+      margin-right: rem(2);
+      padding: rem($pagination-padding-vertical 20 $pagination-padding-vertical $pagination-padding-horizontal);
+      width: auto;
+    }
+  }
+}
+
+
+/**
+ * Right
+ */
+
+.table-sort-pagination {
+  margin: rem($line-height-computed 0);
+  text-align: center;
+
+  @include mq($screen-md) {
+    float: right;
+  }
+
+  .btn {
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $pagination-link-hover-bg;
+      color: $pagination-link-hover-color;
+    }
+
+    &.active {
+      background-color: $pagination-link-active-bg;
+      border-color: $pagination-link-active-border;
+      color: $pagination-link-active-color;
+      cursor: default;
+      z-index: 3;
+    }
+
+    /**
+     * Hide some stuff on mobile
+     */
+    @include mq($screen-md, "max") {
+      display: none;
+
+      &.prev,
+      &.next,
+      &.active {
+        display: block;
+      }
+    }
+
+    @include mq($screen-sm, "max") {
+      &.prev,
+      &.next {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .prev:before,
+  .next:after {
+    font-family: 'FontAwesome';
+    line-height: 1;
+  }
+
+  .prev {
+    &:before {
+      content: '\f104  ';
+    }
+  }
+
+  .next {
+    &:after {
+      content: ' \f105';
+    }
+  }
+}

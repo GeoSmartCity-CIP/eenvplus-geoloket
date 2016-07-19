@@ -1,0 +1,93 @@
+/**
+ * Timeline
+ * --------------------------------------------------
+ */
+
+
+/**
+ * The timeline
+ */
+
+.timeline {
+  margin-left: 0;
+  padding: rem(0 0 0 12);
+
+  /**
+   * Extra styles for normal (larger) timeline
+   */
+  &:not(.timeline-is-compact) {
+    @include mq($screen-sm) {
+      margin-left: rem($timeline-offset);
+
+      .timeline-label {
+        margin: rem(10 0 10 (-$timeline-padding));
+      }
+
+      .timeline-list-label {
+        bottom: 0;
+        display: table;
+        height: 100%;
+        left: rem(-$timeline-offset - ($timeline-padding / 2));
+        padding-bottom: 0;
+        position: absolute;
+        text-align: right;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: rem($timeline-offset - ($timeline-padding / 2));
+      }
+    }
+  }
+
+  /**
+   * Timeline label
+   */
+  &-label {
+    @extend h3;
+    margin: rem(10 0 10 (-$timeline-padding / 2));
+  }
+
+  /**
+   * List items
+   */
+  &-list {
+    @extend .list-unstyled;
+    position: relative;
+
+    /**
+     * Line
+     */
+    &:before {
+      background: $timeline-line-color;
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 2px;
+    }
+
+    > li {
+      padding: rem(($timeline-padding / 2) 0 ($timeline-padding / 2) $timeline-padding);
+      position: relative;
+
+      &:before {
+        background: $white;
+        border: 2px solid $timeline-circle-color;
+        border-radius: 50%;
+        content: '';
+        height: 12px;
+        left: -5px;
+        position: absolute;
+        top: calc(50% - 5px);
+        width: 12px;
+      }
+    }
+
+    /**
+     * Timeline list label
+     */
+    &-label {
+      padding-bottom: rem($timeline-padding / 2);
+    }
+  }
+}

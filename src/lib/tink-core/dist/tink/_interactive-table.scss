@@ -1,0 +1,307 @@
+/**
+ * Table interactive
+ * --------------------------------------------------
+ * Basic styling is already done on the table element by the _table.scss
+ * .table-interactive adds interactive styling elements
+ */
+
+
+.table-interactive {
+  &.is-loading {
+    cursor: not-allowed;
+    position: relative;
+    user-select: none;
+
+    &:before, &:after {
+      cursor: not-allowed;
+      position: absolute;
+      top: 0;
+      z-index: layer('pseudo');
+    }
+
+    &:before {
+      background: rgba($white, .8);
+      bottom: 0;
+      content: '';
+      left: 0;
+      right: 0;
+    }
+
+    &:after {
+      @extend .loader;
+      @extend .loader-lg;
+      content: '';
+      left: 50%;
+      margin-left: rem(-18);
+      pointer-events: none;
+      top: rem(50);
+    }
+  }
+
+  > thead > tr > th {
+    transition: background-color $animation-speed linear, color $animation-speed linear;
+    user-select: none;
+  }
+
+  th {
+    // Fixed width for column with only checkboxes
+    &.has-checkbox {
+      width: rem(35);
+    }
+
+    // Only sortable columns should have an hover effect
+    &.is-sortable {
+      position: relative;
+
+      &:hover {
+        color: $table-interactive-heading-hover-color;
+        cursor: pointer;
+      }
+
+      &:after {
+        content: '\f0dc';
+        font-family: 'FontAwesome';
+        font-size: .65em;
+        line-height: rem(18);
+        margin-left: rem(4);
+      }
+
+      &.sort-asc,
+      &.sort-desc {
+        color: $table-interactive-heading-hover-color;
+        font-weight: 600;
+      }
+
+      &.sort-asc {
+        &:after {
+          // content: '\f0d7';
+          content: '\f0dd';
+        }
+      }
+
+      &.sort-desc {
+        &:after {
+          // content: '\f0d8';
+          content: '\f0de';
+        }
+      }
+    }
+  }
+
+  > tbody > tr {
+    > td,
+    > th {
+      transition: background-color $animation-speed linear, color $animation-speed linear;
+    }
+
+    &.is-hoverable {
+      &:hover,
+      &:active,
+      &:focus {
+        > td,
+        > th {
+          background-color: $table-interactive-hoverable-row-bgcolor !important;
+          // background-color: rgba($black, .08);
+          color: $table-interactive-hoverable-row-color !important;
+          cursor: pointer;
+        }
+      }
+    }
+    &.is-selected {
+      > td,
+      > th {
+        background-color: $table-interactive-selected-row-bgcolor !important;
+        // background-color: lighten($mark-bgcolor,10%);
+        color: $table-interactive-selected-row-color !important;
+      }
+    }
+  }
+}
+
+
+
+/**
+ * Action styling
+ * --------------------------------
+ */
+.table-interactive {
+  &-bar {
+    margin: rem(0 0 5);
+  }
+
+  &-actions {
+    li {
+      padding-bottom: rem(5);
+      padding-right: 0 !important;
+
+      &.hr {
+        align-self: stretch;
+        position: relative;
+        width: 10px;
+
+        &:before {
+          background: $hr-border;
+          bottom: rem(5);
+          content: '';
+          margin-left: rem(4);
+          left: calc(50% - 2px);
+          position: absolute;
+          top: 0;
+          width: 1px;
+        }
+      }
+    }
+  }
+}
+
+
+
+/**
+ * Sort styling
+ * --------------------------------
+ */
+.table-interactive {
+  &-options {
+    overflow: visible;
+    text-align: left;
+
+    .is-selectable {
+      padding-left: rem(4);
+      padding-right: rem(4);
+      transition: background-color $animation-speed linear;
+
+      &.selected {
+        background-color: $table-interactive-options-selected-bgcolor;
+      }
+
+      label {
+        display: block;
+
+        > span {
+          display: block;
+          margin: rem(-2 -4 0 -6);
+          padding: rem(2 6 2 6);
+        }
+      }
+    }
+
+    .is-draggable {
+      &:hover {
+        label {
+          > span {
+            cursor: grab;
+          }
+        }
+      }
+
+      &:not(.selected) {
+        &:hover {
+          background-color: $table-interactive-options-hover-bgcolor;
+        }
+      }
+
+      &:active {
+        label {
+          > span {
+            cursor: grabbing;
+          }
+        }
+      }
+    }
+
+    .draggable-placeholder > div {
+      opacity: .32;
+      position: relative;
+
+      &:before {
+        background: $white;
+        border: 1px dashed $table-interactive-options-dropzone-border;
+        border-radius: $border-radius-base;
+        bottom: 0;
+        content: "";
+        left: 0;
+        opacity: 1;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 2;
+      }
+    }
+  }
+
+  &-sort {
+    padding: rem(5);
+    text-align: right;
+
+    .btn-borderless {
+      border: none;
+      cursor: pointer;
+      padding: 0 0 0 rem(4);
+
+      &[disabled] {
+        opacity: .32;
+        pointer-events: none;
+      }
+    }
+
+    i {
+      user-select: none;
+
+      &:first-child {
+        margin-right: rem(4);
+      }
+    }
+  }
+
+  &-cols {
+    @extend .list-unstyled;
+    @extend .clearfix;
+    display: block;
+    margin: rem(5 0);
+    max-height: rem(150);
+    overflow: hidden;
+    overflow-y: auto;
+    user-select: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    li {
+      overflow: hidden;
+    }
+  }
+
+  .draggable-elem {
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button i {
+    position: relative;
+    z-index: 0;
+  }
+}
+
+
+
+/**
+ * Table alternative heading -> this will be added to the table css when finished
+ */
+
+// .table-alternative-heading {
+//   > thead > tr > th {
+//     background-color: $table-alternative-heading-bg;
+//     border-bottom: 0;
+//     color: $table-alternative-heading-color;
+//     transition: background-color linear $animation-speed;
+//   }
+// }
+
+// .table-alternative-heading.table-interactive {
+//   > thead > tr > th:hover {
+//     background-color: $table-alternative-heading-hover-bg;
+//     color:  $table-alternative-heading-hover-color;
+//   }
+// }

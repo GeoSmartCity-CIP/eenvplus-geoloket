@@ -1,0 +1,24 @@
+{
+  "name": "tink-api-angular",
+  "version": "2.0.0",
+  "main": [
+    "dist/tink-api-angular.js"
+  ],
+  "ignore": [
+    ".*",
+    "**/.*",
+    "Gruntfile.js",
+    "package.json",
+    "src",
+    "test",
+    "*.sublime-project"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "tink-api-javascript": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.3",
+    "angular-scenario": "~1.4.3"
+  }
+}
