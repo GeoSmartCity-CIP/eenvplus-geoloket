@@ -97,13 +97,16 @@ Configure the application:
 
 - The url of the crowdsource service needs to be set in the [src/config.json](https://github.com/GeoSmartCity-CIP/eenvplus-geoloket/blob/master/src/config.json) file.
 
+```js
       {
         "csurl": "http://localhost:8081/CrowdSourcing"
       }
+```
 
 - Other parameters including the url of the eenvplus-sdi and the authentication service need to be set in the [grunt.js](https://github.com/GeoSmartCity-CIP/eenvplus-geoloket/blob/master/gruntfile.js#L53:L60) file.
 The authentication service can be integrated in a wildfly webserver or a standalone keycloak service.
 
+```js
       dev: {
         versionslashed: '',
         apache_base_path: '',
@@ -112,6 +115,7 @@ The authentication service can be integrated in a wildfly webserver or a standal
         wmts_url: '//tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts', //the url of the wmts used for the background
         mode: 'dev'
       }
+```
 
 Build:
 
