@@ -1,7 +1,7 @@
-# eenvplus-geoloket [![Travis Build Status](https://travis-ci.org/VlaamseMilieumaatschappij/eenvplus-geoloket.png?branch=master)](https://travis-ci.org/VlaamseMilieumaatschappij/eenvplus-geoloket)
+# eenvplus-geoloket  
 
-Based on [mf-geoadmin3](https://github.com/geoadmin/mf-geoadmin3), this application allows Flemish cities to edit their
-sewer network.
+Based on [mf-geoadmin3](https://github.com/geoadmin/mf-geoadmin3), this application allows Flemish cities to edit their sewer network.
+This version includes the integration of the gsc-crowdsource service.
 
 ## Key differences with mf-geoadmin3
 
@@ -14,44 +14,21 @@ sewer network.
     - advanced validation of the modifications made to the sewer network
     - upload of [INSPIRE](http://inspire.ec.europa.eu/) compliant GML files
 - A cross-platform build chain using [Grunt](http://gruntjs.com/)
-- [TypeScript](http://www.typescriptlang.org/) as the main development language
+- This version includes the integration of the gsc-crowdsource service.
+
 
 **A sample sewer network editing session:**
 
 [![geoloket screenshot](screenshot.png)]
 
-## Getting started
+**A sample creating a crowdsourcing event**
 
-Checkout the source code:
+[![geoloket screenshot](screenshot_cs.png)]
 
-    $ git clone git@github.com:VlaamseMilieumaatschappij/eenvplus-geoloket.git
+## Installation of all Components and Dependencies
 
-Install build tools:
+See [INSTALL_GUIDE.md](INSTALL_GUIDE.md)
 
-    $ yum install nodejs     --- or whatever nodejs installer you have available for your OS
-    $ npm install -g grunt-cli
-
-Build:
-
-    $ cd eenvplus-geoloket
-    $ grunt build-dev
-
-or to build a .war file for Java servers
-
-    $ maven clean install
-
-Test:
-
-    $ grunt karma:test
-
-Continuous build & test:
-
-    $ grunt dev
-
-Continuous integration:
-
-[https://travis-ci.org/VlaamseMilieumaatschappij/eenvplus-geoloket](https://travis-ci.org/VlaamseMilieumaatschappij/eenvplus-geoloket)
-
-Server side code:
+## Server side code:
 
 See [eenvplus-sdi](https://github.com/VlaamseMilieumaatschappij/eenvplus-sdi)

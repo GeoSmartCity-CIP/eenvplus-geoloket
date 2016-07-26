@@ -53,21 +53,21 @@ var dir = {
         dev: {
             versionslashed: '',
             apache_base_path: '',
-            api_url: '//e-envplus.vmm.be/api',
-            auth_url: '//localhost:8080/auth',
-            wmts_url: '//tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts',
+            api_url:  '//o-envplus.vmm.be/api', //the url of the eenvplus-sdi
+            auth_url: '//localhost:8080/auth',  //the url of the  keycloak authentication service
+            wmts_url: '//tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts', //the url of the wmts used for the background
             mode: 'dev'
         }
     };
 
-    cs= { 
+    cs= {
         csIn: [dir.cs + '*.js' , dir.cs + 'directives/*.js' ],
         csOut: dir.build + "crowdsource.js",
-        gsc: dir.lib + "gsc.js", 
+        gsc: dir.lib + "gsc.js",
         jsBower: dir.build + "bower.js",
         cssBower: dir.build + "style/bower.css"
-    }; 
-    
+    };
+
 vars.dev.wmts_url += '?' + _.map(vars.wmts, urlParam).join('&');
 
 function urlParam(value, key) {
@@ -120,7 +120,7 @@ module.exports = function (grunt) {
         src: src,
         cs: cs,
         pkg: grunt.file.readJSON('package.json'),
-        
+
         concat: {
           options: {
             stripBanners: true,
@@ -145,8 +145,8 @@ module.exports = function (grunt) {
                   relative: false
                 }
               }
-        },  
-        
+        },
+
         clean: {
             dev: [file.dependency, file.tsOut + '*', file.htmlOut, file.htmlOutMobile, file.lessOut, cs.csOut, cs.csOut + '.map', cs.jsBower,  cs.jsBower+ '.map', cs.cssBower]
         },
