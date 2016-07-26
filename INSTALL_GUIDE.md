@@ -29,13 +29,14 @@ to install this application, you can follow steps outlined below:
       sudo service tomcat7 start
       sudo apt-get install postgresql postgresql-contrib
 
-
 - create the db and users in postgis (for development on localhost, then create the database and populate it with the correct schema's (in 2 separate sql files, found in the sql folder):
 
+```
       createuser --createdb --login --createrole --pwprompt --superuser rszturc
       createuser --login --pwprompt cs
       psql -f createCS_db.sql
       psql -f schemaCS_db.sql cs
+```
 
 - Download the backend as war-file: https://github.com/GeoSmartCity-CIP/crowd-sourcing/releases/download/v1.7/CrowdSourcing.war
 - Load the crowd-sourcing backend into tomcat or other java application server:  http://localhost:8080/manager/html
