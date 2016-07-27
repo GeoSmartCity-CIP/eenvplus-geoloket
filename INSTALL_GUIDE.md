@@ -29,14 +29,18 @@ to install this application, you can follow steps outlined below:
       sudo service tomcat7 start
       sudo apt-get install postgresql postgresql-contrib
 
-- create the db and users in postgis (for development on localhost, then create the database and populate it with the correct schema's (in 2 separate sql files, found in the sql folder):
+- create the db (in this case named 'cs'), configure schema and load extensions and create users in postgis for development on localhost (in 2 separate sql files, found in the sql folder):
 
-```
+   ```sh
       createuser --createdb --login --createrole --pwprompt --superuser rszturc
-      createuser --login --pwprompt cs
       psql -f createCS_db.sql
-      psql -f schemaCS_db.sql cs
-```
+      psql -f configCS_db.sql cs
+   ```
+- when you have database with postgis and a user with write privileges, you can create the correct tables:
+
+   ```sh
+      psql -f tablesCS_db.sql  <database name>
+   ```
 
 - Download the backend as war-file: https://github.com/GeoSmartCity-CIP/crowd-sourcing/releases/download/v1.7/CrowdSourcing.war
 - Load the crowd-sourcing backend into tomcat or other java application server:  http://localhost:8080/manager/html
@@ -107,6 +111,7 @@ Configure the application:
 The authentication service can be integrated in a wildfly webserver or a standalone keycloak service.
 
 ```js
+   ...
       dev: {
         versionslashed: '',
         apache_base_path: '',
@@ -115,6 +120,7 @@ The authentication service can be integrated in a wildfly webserver or a standal
         wmts_url: '//tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts', //the url of the wmts used for the background
         mode: 'dev'
       }
+   ...
 ```
 
 Build:
