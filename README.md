@@ -19,11 +19,11 @@ This version includes the integration of the gsc-crowdsource service.
 
 **A sample sewer network editing session:**
 
-[![geoloket screenshot](screenshot.png)]
+![geoloket screenshot](screenshot.png)
 
 **A sample creating a crowdsourcing event**
 
-[![geoloket screenshot](screenshot_cs.png)]
+![geoloket screenshot](screenshot_cs.png)
 
 ## Installation of all Components and Dependencies
 
