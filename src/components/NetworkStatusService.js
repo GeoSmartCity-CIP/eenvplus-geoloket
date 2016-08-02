@@ -80,7 +80,7 @@
           }
           $.ajax({
             method: 'GET',
-            url: gaGlobalOptions.mapUrl + '/checker',
+            url: 'checker',
             timeout: 1000,
             success: function() {
               count = 0;
@@ -143,4 +143,3 @@
     };
   });
 })();
-

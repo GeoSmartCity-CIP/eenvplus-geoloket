@@ -35,14 +35,12 @@ cs.getMyPosition = function(callback){
           },
          function(err){
            alert( "No gps position available: " + err.message );
-           callback(0,0,true);
            throw err;
          },   { enableHighAccuracy: true, timeout: 3000 }
         );
     }
     else {
       alert( "No gps position available" );
-      callback(0,0,true);
       throw "No gps position available";
     }
 };

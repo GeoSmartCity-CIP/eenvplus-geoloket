@@ -271,13 +271,30 @@ module.exports = function (grunt) {
                 files: [src.ts, testSrc.ts],
                 tasks: ['ts:test']
             }
+        },
+
+        war: {
+          target: {
+            options: {
+              war_verbose: true,
+              war_dist_folder: 'build',
+              war_name: 'eenvplus',
+              webxml_welcome: 'index.html',
+              webxml_display_name: 'e-envplus',
+            },
+            files: [ {
+                expand: true,
+                cwd: 'src',
+                src: ['**'],
+                dest: ''
+              }  ]
+          }
         }
     });
 
     grunt.registerMultiTask('nunjucks', 'Renders nunjucks template to HTML', nunjucksTask);
     grunt.registerTask(
-        'build-dev',
-        'Builds the files required for development',
+        'build-dev', 'Builds the files required for development',
         ['bower_concat','concat',
         'ts:dev', 'closureDepsWriter:dev', 'less:dev', 'nunjucks:dev', 'nunjucks:devMobile']
     );
@@ -287,6 +304,7 @@ module.exports = function (grunt) {
         'Monitors source html, js and less files and executes their corresponding dev build tasks when needed',
         ['build-dev', 'ts:test', 'watch']
     );
+    grunt.registerTask('build-war', [ 'war']);
     grunt.registerTask('travis', 'Single run build/test for CI server', ['ts:dev', 'ts:test', 'karma:test_ci']);
     grunt.registerTask('default', 'Default task: build dev environment', ['dev']);
 

@@ -131,6 +131,10 @@ Or to build a .war file for Java servers
 
     $ maven clean install
 
+or use the grunt task for this as well
+
+    $ grunt build-war
+
 Run on localhost
 
     $ grunt http

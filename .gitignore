@@ -1,8 +1,10 @@
+/build
+
 /src/bower.js
 /src/crowdsource.js
 /src/crowdsource.js.map
 /src/style/bower.css
- 
+
 /node_modules
 /src/deps.js
 /src/lib/fastclick.js
