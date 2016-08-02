@@ -1,5 +1,5 @@
 ------
--- 
+-- config the db voor the gsc-crowdsource application and ad extensions
 ------
 
 CREATE SCHEMA IF NOT EXISTS topology;

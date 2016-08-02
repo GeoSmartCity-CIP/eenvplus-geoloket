@@ -74,8 +74,8 @@ itemscope itemtype="http://schema.org/WebApplication"
       })();
     </script>
 
-    <link href="${versionslashed}style/app.css" rel="stylesheet"/>
     <link href="${versionslashed}style/bower.css" rel="stylesheet"/>
+    <link href="${versionslashed}style/app.css" rel="stylesheet"/>
     <link rel="shortcut icon" type="image/x-icon" href="${versionslashed}img/favicon.ico"/>
     <link rel="shortcut icon" type="image/x-icon" href="${versionslashed}img/favicon.ico"/>
   </head>
@@ -224,7 +224,7 @@ itemscope itemtype="http://schema.org/WebApplication"
 
     <div id="pulldown" ng-show="!globals.offline" ng-class="{'selection-and-catalog-shown': (globals.catalogShown && globals.selectionShown)}">
       <div id="pulldown-content" class="panel-group content ${"in" if device == "desktop" else "collapse"}">
-        
+
         <!--crowsource-->
         <div class="panel crowsource" >
 
@@ -241,7 +241,7 @@ itemscope itemtype="http://schema.org/WebApplication"
           </div>
         </div>
         <!--/crowsource-->
-        
+
         <div ep-feature-zoom class="panel zoom include-in-overview"></div>
 
         <div class="panel share">
@@ -649,7 +649,7 @@ itemscope itemtype="http://schema.org/WebApplication"
     <script src="lib/lodash.js"></script>
     <script src="lib/signals/trasys.signals.js"></script>
     <script src="lib/keycloak/dist/keycloak.js"></script>
-    
+
     <!-- Use Closure to load the application scripts -->
     <script>
       window.CLOSURE_NO_DEPS = true;
@@ -659,13 +659,13 @@ itemscope itemtype="http://schema.org/WebApplication"
          need to load base.js ourselves. We keep Closure's base.js file
          around in case we need to test with ol.js or ol-simple.js. -->
     <script src="lib/ol-debug.js"></script>
-    
+
     <!--crowsource -->
     <script src="lib/gsc.js"></script>
     <script src="crowdsource.js"></script>
     <script src="bower.js"></script>
     <!--/crowsource-->
-    
+
     <!--<script src="lib/closure/base.js"></script>-->
     <script src="eenvplus.js"></script>
     <script src="deps.js"></script>
