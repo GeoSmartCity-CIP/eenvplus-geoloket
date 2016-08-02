@@ -28,7 +28,7 @@ cs.controller('crowdsourceController', ['$scope', 'ngDialog', function($scope, n
            $scope.gettingPosition = false;
         };
 
-      var eventForm = function(x,y) {
+      var eventForm = function(x,y, cancel) {
            $scope.gettingPosition = false;
            $scope.xy =  [x,y];
 

@@ -27,11 +27,23 @@ cs.zoomTo = function(x, y, zoom){
 
 cs.getMyPosition = function(callback){
     if (navigator.geolocation && typeof(callback) === "function" ) {
-        navigator.geolocation.getCurrentPosition(function(pos){
-           var y = pos.coords.latitude;
-           var x = pos.coords.longitude;
-           callback( x,y );
-        });
+        navigator.geolocation.getCurrentPosition(
+         function(pos){
+             var y = pos.coords.latitude;
+             var x = pos.coords.longitude;
+             callback(x,y);
+          },
+         function(err){
+           alert( "No gps position available: " + err.message );
+           callback(0,0,true);
+           throw err;
+         },   { enableHighAccuracy: true, timeout: 3000 }
+        );
+    }
+    else {
+      alert( "No gps position available" );
+      callback(0,0,true);
+      throw "No gps position available";
     }
 };
 
