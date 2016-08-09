@@ -4,6 +4,9 @@
 /src/crowdsource.js
 /src/crowdsource.js.map
 /src/style/bower.css
+/src/tracer.js
+/src/tracer.js.map
+
 
 /node_modules
 /src/deps.js

@@ -1,3 +1,6 @@
 {
-    "csurl": "http://localhost:8081/CrowdSourcing"
+    "csurl": "http://localhost:8081/CrowdSourcing",
+    "tracerUrl": "",
+    "wfs_appurtenance": "http://t-geoserver.vmm.be/geoserver/eENVplus/ows"
+
 }

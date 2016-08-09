@@ -11,6 +11,7 @@ var dir = {
         lib: 'src/lib/',
         ts: 'src/ts/',
         cs: 'src/cs/',
+        tracer: 'src/tracer/',
         test: {
             js: 'test/specs/',
             ts: 'test/ts/'
@@ -54,17 +55,22 @@ var dir = {
             versionslashed: '',
             apache_base_path: '',
             api_url:  '//o-envplus.vmm.be/api', //the url of the eenvplus-sdi
-            auth_url: '//localhost:8080/auth',  //the url of the  keycloak authentication service
+            auth_url: '//localhost:8080/auth',  //'//t-envplus.vmm.be/auth/',  //the url of the  keycloak authentication service
             wmts_url: '//tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts', //the url of the wmts used for the background
             mode: 'dev'
         }
     };
 
-    cs= {
-        csIn: [dir.cs + '*.js' , dir.cs + 'directives/*.js' ],
-        csOut: dir.build + "crowdsource.js",
-        gsc: dir.lib + "gsc.js",
-        jsBower: dir.build + "bower.js",
+    var tracer = {
+        jsIn:    [dir.tracer + '*.js' , dir.tracer + 'directives/*.js' ],
+        jsOut:    dir.build + "tracer.js"
+    };
+
+    var cs= {
+        jsIn:    [dir.cs + '*.js' , dir.cs + 'directives/*.js' ],
+        jsOut:    dir.build + "crowdsource.js",
+        gsc:      dir.lib + "gsc.js",
+        jsBower:  dir.build + "bower.js",
         cssBower: dir.build + "style/bower.css"
     };
 
@@ -125,10 +131,14 @@ module.exports = function (grunt) {
           options: {
             stripBanners: true,
             sourceMap: true
-          },
-          js: {
-            src: cs.csIn,
-            dest: cs.csOut
+          } ,
+          cs: {
+            src: cs.jsIn,
+            dest: cs.jsOut
+          } ,
+          tracer: {
+            src: tracer.jsIn ,
+            dest: tracer.jsOut
           }
         },
         bower_concat: {
@@ -148,7 +158,7 @@ module.exports = function (grunt) {
         },
 
         clean: {
-            dev: [file.dependency, file.tsOut + '*', file.htmlOut, file.htmlOutMobile, file.lessOut, cs.csOut, cs.csOut + '.map', cs.jsBower,  cs.jsBower+ '.map', cs.cssBower]
+            dev: [file.dependency, file.tsOut + '*', file.htmlOut, file.htmlOutMobile, file.lessOut, cs.jsOut, cs.jsOut + '.map', cs.jsBower,  cs.jsBower+ '.map', cs.cssBower, tracer.jsOut, tracer.jsOut + '.map']
         },
 
         closureDepsWriter: {
@@ -299,10 +309,8 @@ module.exports = function (grunt) {
         'ts:dev', 'closureDepsWriter:dev', 'less:dev', 'nunjucks:dev', 'nunjucks:devMobile']
     );
     grunt.registerTask('http', 'Run an http server on development files.', ['connect:dev:keepalive']);
-    grunt.registerTask(
-        'dev',
-        'Monitors source html, js and less files and executes their corresponding dev build tasks when needed',
-        ['build-dev', 'ts:test', 'watch']
+    grunt.registerTask( 'dev',
+        'Monitors source html, js and less files and executes their corresponding dev build tasks when needed',  ['build-dev', 'ts:test', 'watch']
     );
     grunt.registerTask('build-war', [ 'war']);
     grunt.registerTask('travis', 'Single run build/test for CI server', ['ts:dev', 'ts:test', 'karma:test_ci']);
