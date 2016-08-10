@@ -8,15 +8,6 @@ cs.controller('csController', ['$scope', '$http', 'ngDialog', '$sce',
     function($scope, $http, ngDialog, $sce) {
       $scope.activeTool = cs.activeTool = "event";
 
-      //load config
-      $http.get('config.json').then(
-          function( response ){
-            gsc.cs.csUrl( response.data.csurl );
-          },
-          function (err) {
-             throw  err;
-        });
-
     //modal
     cs.openModal = function(title, content, showOK, showCancel) {
       $scope.title = title;

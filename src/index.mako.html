@@ -251,8 +251,9 @@ itemscope itemtype="http://schema.org/WebApplication"
             <span >Trace rioleringen</span>
           </a>
           <div id="tracerPanel" class="panel-collapse collapse">
-            <div class="panel-body" >
+            <div class="panel-body"  ng-controller="tracerController">
 
+                <tracerform tracermap="map"></tracerform>
             </div>
           </div>
         </div>
@@ -679,6 +680,7 @@ itemscope itemtype="http://schema.org/WebApplication"
     <!--crowsource -->
     <script src="lib/gsc.js"></script>
     <script src="crowdsource.js"></script>
+    <script src="tracer.js"></script>
     <script src="bower.js"></script>
     <!--/crowsource-->
 
