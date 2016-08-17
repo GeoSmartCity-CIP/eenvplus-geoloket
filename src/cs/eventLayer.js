@@ -23,16 +23,20 @@ cs.replaceEventData = function(data) {
 cs.addEventLayer = function(){
     cs.eventLayer = new ol.layer.Vector({
        source: new ol.source.Vector({}),
-       style: cs.styleCache['warning']
+       style: cs.styleCache['warning'],
+       zIndex: 98
     });
 
     cs.map.on('click', function(evt) {
         if(  cs.activeTool !== "event" ) { return; }
 
-        var feature = cs.map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
-            return feature;
+        var clickedObj = cs.map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+            return {feature: feature, layer: layer}
         });
-        if ( feature ){
+
+
+        if ( clickedObj && clickedObj.layer === cs.eventLayer){
+            var feature = clickedObj.feature;
             var title = "";
             var content = "";
             if(feature.get('description')) {

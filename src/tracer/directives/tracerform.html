@@ -1,5 +1,41 @@
 <div ng-controller="tracerFormController">
 
-TODO
+  <div class="form-group">
+
+   <div>
+      <h4>Riool koppelpunt:</h4>
+      <button type="button" class="btn-primary" ng-click="chooseNode()" title="Klik op de kaart">
+      Via Kaart </button>
+     </span>
+   </div>
+   <ul style="margin:10px;" >
+      <li> Geklikt punt:
+        <strong ng-show="rio_x == 0" >Nog geen punt aangeklikt</strong>
+        <span class="badge" ng-show="rio_x > 0" >{{ rio_x}} - {{ rio_y }} </span>
+      </li>
+      <li> Koppelpunt: <strong >{{ rio_nodeMsg }} </strong> </li>
+   </ul>
+
+   <div>
+     <h4>Welke zin wenst u te tracen:</h4>
+     <span class="radio">
+        <input type="radio" id="upstream" value="Stroomopwaarts" ng-model="direction"/>
+        <label for="upstream" >  Stroomopwaarts </label>
+      </span>
+      <span class="radio">
+        <input type="radio" id="downstream"  value="Stroomafwaarts" ng-model="direction"/>
+        <label for="downstream" >Stroomafwaarts</label>
+      <span>
+    </div>
+
+    <hr/>
+
+    <div style="position: relative; padding-bottom: 15px;" >
+      <button type="button" class="btn-primary" style="position: absolute; right: 90px; top: 5px;"
+        ng-click="traceclear()" >Leegmaken</button>
+      <button type="button" class="btn-primary" style="position: absolute; right: 10px; top: 5px;"
+        ng-disabled="rio_node == null" ng-click="tracecommit()" >Bevestigen</button>
+    </div>
+  </div>+
 
 </div>

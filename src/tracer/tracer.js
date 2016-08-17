@@ -1,51 +1,63 @@
 /*globals angular, gsc */
 
 //module global namespace
-var tracer = angular.module('tracerApp', ['tink.tinkApi', 'tink.accordion', 'ngDialog']);
+var tracerApp = angular.module('tracerApp', ['ngDialog']);
+var tracer = {};
 
 // main controller for tracer
-cs.controller('tracerController', ['$scope', '$http',
-    function($scope, $http) {
-      var wfs_appurtenance = "http://geoserver.vmm.be/geoserver/eENVplus/ows";
-      var tracerUrl = '';
-      //load config
-      $http.get('config.json').then(
-          function( response ){
+tracerApp.controller('tracerController', ['$scope', '$http',
+function($scope, $http) {
+    var envplus_rest_Url = "";
+    var nodeLyr = "";
+    var tracerUrl = "";
+
+    //load config
+    $http.get('config.json').then(
+      function( response ){
             gsc.cs.csUrl( response.data.csurl );
-
             tracerUrl = response.data.tracerUrl;
-            wfs_appurtenance = response.data.wfs_appurtenance;
-            console.log(wfs_appurtenance)
+            envplus_rest_Url = response.data.envplus_rest_Url;
+            nodeLyr = response.data.riolinkNodeLayer;
           },
           function (err) {
              throw err;
-        });
+      });
 
-   tracer.getAppurtenanceAtXY = function (x,y, offset, count) {
-      var bbox =[x - offset, y - offset, x + offset, y + offset].join(",");
-      //
-      // var data = {"service": "WFS" , "version": "2.0.0",
-      //     "request": "GetFeature", "typeName": "eENVplus:v_appurtenance",
-      //     "count": count, "outputFormat": "json", "srsName": "EPSG:31370",
-      //     "bbox": bbox  };
+    tracer.getNodeAtXY = function (x,y, callback ) {
+      var geometry = x +","+ y;
+      var mapSize = [ $scope.map.getSize()[0], $scope.map.getSize()[1], 96]
+      var bbox = $scope.map.getView().calculateExtent($scope.map.getSize());
 
-      var data = {"service": "WFS" , "version": "2.0.0", "request": "GetFeature",
-                "typeName": "lu:lu_la_pr", "outputFormat": "json", "srsName": "EPSG:31370",
-                "count": count, "bbox": bbox  };
+      var data = {"geometryFormat": "geojson", "geometryType":"esriGeometryPoint",
+                  "layers": nodeLyr, "geometry": geometry, "imageDisplay": mapSize.join(","),
+                  "tolerance": "5", "mapExtent": bbox.join(",") };
 
-      var wfsUri = wfs_appurtenance +"?"+ $.param(data);
-      console.log( wfsUri )
+      var restUri = envplus_rest_Url + "?" + $.param(data);
 
-      $http.get( wfsUri ).then(
-          function( response ){
-              console.log(response.data);
-          },
-          function (err) {
-             throw err;
-        });
-    };
+        $.ajax(restUri)
+          .done(function( data ) {
+            if( typeof(data.results) === "undefined" ){
+                callback( [] );
+            }
+            var results = $.map( data.results, function( val, i ) {
+                return {id: val.id , xy: val.geometry.coordinates }
+            });
+            callback( results );
+          });
 
+    }
 
+    tracer.getTrace = function( nodeID, upstream, callback ){
+        if(upstream) { hasUpstream = "True"; }
+        else { hasUpstream = "False"; }
 
+        var data = {"id": nodeID  , "upstream": hasUpstream}
+        var tracerUri = tracerUrl +"?"+ $.param(data);
+
+        $.ajax(tracerUri)
+          .done(function( data ) {
+              callback( data );
+          });
+    }
 
 }]);

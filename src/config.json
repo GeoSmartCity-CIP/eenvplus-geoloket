@@ -1,6 +1,6 @@
 {
     "csurl": "http://localhost:8081/CrowdSourcing",
-    "tracerUrl": "",
-    "wfs_appurtenance": "https://www.mercator.vlaanderen.be/raadpleegdienstenmercatorpubliek/lu/wfs",
-    "appurtenance_layer": "eENVplus:v_appurtenance"
+    "tracerUrl": "tracer/trace_442221_downstream.json",
+    "envplus_rest_Url": "http://t-envplus.vmm.be/api/rest/services/ech/MapServer/identify",
+    "riolinkNodeLayer": "be.vmm.eenvplus.sdi.model.KoppelPunt"
 }
