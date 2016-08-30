@@ -1,14 +1,18 @@
 <div >
-  <h3>{{ title }}</h3>
 
   <div class="form-group">
     <p >Locatie: {{xy[1] | number:4 }} ° - {{xy[0] | number:4 }} ° </p>
-    <label for="info-text">Beschrijving: </label>
-    <textarea  ng-model="description" id="info-text" rows="3"></textarea>
 
-    <label for="prioritySelect">Prioriteit : </label>
+    <div ng-class="description.length < 1 ? 'has-error': 'has-success'" >
+    <label for="info-text">Description: </label>
+      <textarea   ng-model="description" id="info-text" rows="3">
+      </textarea>
+    </div>
+
+    <label for="prioritySelect">Priority : </label>
     <select name="prioritySelect" id="prioritySelect" ng-model="priority">
-        <option ng-repeat="priorityOption in priorities" value="{{priorityOption}}">{{priorityOption}}</option>
+        <option ng-repeat="priorityOption in priorities"
+                value="{{priorityOption}}">{{priorityOption}}</option>
     </select>
       <br/>
     <input type="file" id="fileInput" accept="image/*" capture="camera"/>
@@ -16,6 +20,6 @@
   </div>
 
   <hr/>
-  <button data-ng-click="ok()" >Opslaan</button>
-  <button data-ng-click="cancel()">Annuleren</button>
+  <button ng-disabled="description.length < 1" data-ng-click="ok()" >Save</button>
+  <button data-ng-click="cancel()">Cancel</button>
 </div>

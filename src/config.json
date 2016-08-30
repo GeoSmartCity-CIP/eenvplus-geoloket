@@ -1,6 +1,6 @@
 {
-    "csurl": "http://localhost:8081/CrowdSourcing",
+    "csurl": "//o-gsc.vmm.be/gsc-crowdsourcing-services",
     "tracerUrl": "tracer/trace_442221_downstream.json",
-    "envplus_rest_Url": "http://t-envplus.vmm.be/api/rest/services/ech/MapServer/identify",
+    "envplus_rest_Url": "//o-gsc.vmm.be/api/rest/services/ech/MapServer/identify",
     "riolinkNodeLayer": "be.vmm.eenvplus.sdi.model.KoppelPunt"
 }

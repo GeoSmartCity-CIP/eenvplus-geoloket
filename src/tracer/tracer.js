@@ -9,13 +9,13 @@ tracerApp.controller('tracerController', ['$scope', '$http',
 function($scope, $http) {
     var envplus_rest_Url = "";
     var nodeLyr = "";
-    var tracerUrl = "";
+    var tracerBaseUrl = "";
 
     //load config
     $http.get('config.json').then(
       function( response ){
             gsc.cs.csUrl( response.data.csurl );
-            tracerUrl = response.data.tracerUrl;
+            tracerBaseUrl = response.data.tracerUrl;
             envplus_rest_Url = response.data.envplus_rest_Url;
             nodeLyr = response.data.riolinkNodeLayer;
           },
@@ -47,12 +47,8 @@ function($scope, $http) {
 
     }
 
-    tracer.getTrace = function( nodeID, upstream, callback ){
-        if(upstream) { hasUpstream = "True"; }
-        else { hasUpstream = "False"; }
-
-        var data = {"id": nodeID  , "upstream": hasUpstream}
-        var tracerUri = tracerUrl +"?"+ $.param(data);
+    tracer.getTrace = function( nodeID, streamDirection, callback ){
+        var tracerUri = tracerUrl +"/"+ streamDirection +"/"+ nodeID;
 
         $.ajax(tracerUri)
           .done(function( data ) {

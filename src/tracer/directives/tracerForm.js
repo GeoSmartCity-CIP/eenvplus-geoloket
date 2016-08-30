@@ -1,11 +1,11 @@
 tracerApp.controller('tracerFormController', ['$scope', 'ngDialog',
   function($scope, ngDialog) {
-
+      $scope.direction = "upstream";
       var reset = function () {
-        $scope.rio_x = 0;
-        $scope.rio_y = 0;
         $scope.rio_node = null;
-        $scope.rio_nodeMsg = "Kies een punt op de Kaart";
+        $scope.rio_nodeFound = false;
+        $scope.tracingActive = false;
+        $scope.rio_nodeMsg = "Choose a point on the map";
       }
       reset();  //call once to set on load
 
@@ -13,7 +13,7 @@ tracerApp.controller('tracerFormController', ['$scope', 'ngDialog',
           tracer.getTrace( $scope.rio_node, $scope.direction, function(geom){
               tracerlayer.addTraceline(geom);
           });
-          $scope.rio_node = null;
+          reset();
       };
 
       $scope.traceclear = function () {
@@ -23,11 +23,12 @@ tracerApp.controller('tracerFormController', ['$scope', 'ngDialog',
 
       $scope.chooseNode = function(){
            $("body").css( "cursor", "crosshair");
+           $scope.tracingActive = true;
 
            $scope.map.once('click', function(evt) {
                $("body").css( "cursor", "default");
-               $scope.rio_x = Math.round( evt.coordinate[0]);
-               $scope.rio_y = Math.round( evt.coordinate[1]);
+               $scope.tracingActive = false;
+
                $scope.$apply();
                tracer.getNodeAtXY(evt.coordinate[0], evt.coordinate[1], traceCallback);
            });
@@ -37,13 +38,15 @@ tracerApp.controller('tracerFormController', ['$scope', 'ngDialog',
       var traceCallback= function(data){
          if( data.length > 0 ){
             $scope.rio_node = data[0].id;
+            $scope.rio_nodeFound = true;
             var xy = data[0].xy;
-            $scope.rio_nodeMsg = "punt met id " + data[0].id
+            $scope.rio_nodeMsg = "Point with id " + $scope.rio_node
             tracerlayer.newTraceStart( xy );
          }
          else {
             $scope.rio_node = null;
-            $scope.rio_nodeMsg = "Geen KoppelPunt in de buurt van geklikt punt";
+            $scope.rio_nodeFound = false;
+            $scope.rio_nodeMsg = "No Appurtenance in the neighborhood of the clicked point";
          }
          $scope.$apply();
       }
@@ -56,7 +59,7 @@ tracerApp.directive('tracerform', function() {
       scope: {
               map: '=tracermap'
             },
-      templateUrl: 'tracer/directives/tracerForm.html',
+      templateUrl: 'tracer/directives/tracerform.html',
       link: function (scope) {
           tracerlayer.init(scope.map);
       }

@@ -1,23 +1,23 @@
 <div ng-controller="crowdsourceController">
 
         <div ng-hide="creatingEvent" >
-
-            <button href="" class="margin-left margin-top btn-primary"
-                    ng-click="creatingEvent = true" >Nieuwe melding</button>
-
-            <events ></events>
+            <p>
+               <button href="" class="margin-left margin-top btn-primary"
+                       ng-click="creatingEvent = true" >New issue </button>
+            </p>
+            <p><events ></events><p>
         </div>
 
         <div ng-show="creatingEvent" class="margin-left margin-top" >
-            <h4>Nieuwe Melding</h4>
-            <p>Bepaal de locatie aan de hand van: </p>
+            <h4>New Issue</h4>
+            <p>Find location based on: </p>
             <p> <button type="button" ng-click="forMyPosition()" class="margin-right" ng-disabled="gettingPosition" >
-                <span class="fa fa-crosshairs" ></span> De GPS-locatie</button> </p>
+                <span class="fa fa-crosshairs" ></span> Current device location</button> </p>
             <p> <button type="button" ng-click="positionFromMap()" class="margin-right" ng-disabled="gettingPosition" >
-                <span class="fa fa-map-marker" ></span> Prikken op kaart</button> </p>
+                <span class="fa fa-map-marker" ></span> Click on the map</button> </p>
             <hr/>
             <p>  <button type="button"  ng-click="cancel()" class="margin-right" >
-                <span class="fa fa-times-circle" ></span> Sluiten</button> </p>
+                <span class="fa fa-times-circle" ></span> Close</button> </p>
         </div>
 
 </div>

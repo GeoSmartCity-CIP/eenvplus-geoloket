@@ -54,8 +54,8 @@ var dir = {
         dev: {
             versionslashed: '',
             apache_base_path: '',
-            api_url:  '//e-envplus.vmm.be/api', //the url of the eenvplus-sdi
-            auth_url: '//localhost:8080/auth',  //'//t-envplus.vmm.be/auth/',  //the url of the  keycloak authentication service
+            api_url:  '//o-gsc.vmm.be/api', // '//o-gsc.vmm.be/api', //the url of the eenvplus-sdi
+            auth_url: '//o-gsc.vmm.be/auth/',//the url of the  keycloak authentication service
             wmts_url: '//tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts', //the url of the wmts used for the background
             mode: 'dev'
         }

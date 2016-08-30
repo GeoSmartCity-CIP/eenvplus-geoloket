@@ -2,29 +2,27 @@
 
   <div class="form-group">
 
+  <div>
+       Appurtenance ID: <strong >{{ rio_nodeMsg }} </strong>
+  </div>
    <div>
-      <h4>Riool koppelpunt:</h4>
-      <button type="button" class="btn-primary" ng-click="chooseNode()" title="Klik op de kaart">
-      Via Kaart </button>
-     </span>
-   </div>
-   <ul style="margin:10px;" >
-      <li> Geklikt punt:
-        <strong ng-show="rio_x == 0" >Nog geen punt aangeklikt</strong>
-        <span class="badge" ng-show="rio_x > 0" >{{ rio_x}} - {{ rio_y }} </span>
-      </li>
-      <li> Koppelpunt: <strong >{{ rio_nodeMsg }} </strong> </li>
-   </ul>
+      <button type="button" class="btn-primary" ng-click="chooseNode()" >
+       Start a new trace</button>
+       <div class="callout" ng-show="tracingActive" >
+         <p>Choose a appurtenance on the map by clicking on it.</p>
+       </div>
+
+   </div><br/>
 
    <div>
-     <h4>Welke zin wenst u te tracen:</h4>
-     <span class="radio">
-        <input type="radio" id="upstream" value="Stroomopwaarts" ng-model="direction"/>
-        <label for="upstream" >  Stroomopwaarts </label>
+     <div> <strong> In what direction do you want to trace: </strong> </div>
+      <span class="radio">
+        <input type="radio" id="upstream" value="upstream" ng-model="direction"/>
+        <label for="upstream" >Upstream </label>
       </span>
       <span class="radio">
-        <input type="radio" id="downstream"  value="Stroomafwaarts" ng-model="direction"/>
-        <label for="downstream" >Stroomafwaarts</label>
+        <input type="radio" id="downstream" value="downstream" ng-model="direction"/>
+        <label for="downstream" >Downstream</label>
       <span>
     </div>
 
@@ -32,10 +30,10 @@
 
     <div style="position: relative; padding-bottom: 15px;" >
       <button type="button" class="btn-primary" style="position: absolute; right: 90px; top: 5px;"
-        ng-click="traceclear()" >Leegmaken</button>
+        ng-click="traceclear()" >Clear</button>
       <button type="button" class="btn-primary" style="position: absolute; right: 10px; top: 5px;"
-        ng-disabled="rio_node == null" ng-click="tracecommit()" >Bevestigen</button>
+              ng-disabled="!rio_nodeFound" ng-click="tracecommit()" >Execute</button>
     </div>
-  </div>+
+  </div>
 
 </div>

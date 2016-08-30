@@ -68,8 +68,8 @@ cs.styleCache = {
         opacity: 0.6
       }),
       stroke: new ol.style.Stroke({
-        color: '#F00',
-        width: 1
+        color: '#FFF',
+        width: 0.4
       })
     })
   }),

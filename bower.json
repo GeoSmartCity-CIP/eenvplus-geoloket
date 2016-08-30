@@ -7,7 +7,7 @@
     "angular": "~1.5.7",
     "angular-animate": "~1.5.7",
     "angular-resource": "~1.5.7",
-    "keycloak": "~2.0.0",
+    "keycloak": "~1.0.0",
     "ng-file-upload": "~2.1.1",
     "tink-core": "^1.12.4",
     "tink-accordion-angular": "^2.0.1",

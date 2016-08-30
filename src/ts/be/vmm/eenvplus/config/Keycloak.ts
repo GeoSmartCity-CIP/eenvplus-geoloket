@@ -6,8 +6,8 @@ module be.vmm.eenvplus.config {
 
     export var keycloak = {
         url: location.protocol + '${auth_url}',
-        realm: 'eenvplus',
-        clientId: 'eenvplus-geoloket'
+        realm: 'gsc',
+        clientId: 'gsc-geoloket'
     };
 
 }
