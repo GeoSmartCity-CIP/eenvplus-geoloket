@@ -55,7 +55,7 @@ var dir = {
             versionslashed: '',
             apache_base_path: '',
             api_url:  '//o-gsc.vmm.be/api', // '//o-gsc.vmm.be/api', //the url of the eenvplus-sdi
-            auth_url: '//o-gsc.vmm.be/auth/',//the url of the  keycloak authentication service
+            auth_url: '//o-gsc.vmm.be/auth',//the url of the  keycloak authentication service
             wmts_url: '//tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts', //the url of the wmts used for the background
             mode: 'dev'
         }
@@ -69,7 +69,7 @@ var dir = {
     var cs= {
         jsIn:    [dir.cs + '*.js' , dir.cs + 'directives/*.js' ],
         jsOut:    dir.build + "crowdsource.js",
-        gsc:      dir.lib + "gsc.js",
+        gsc:      dir.lib +   "gsc.js",
         jsBower:  dir.build + "bower.js",
         cssBower: dir.build + "style/bower.css"
     };

@@ -1,4 +1,6 @@
 {
+
+"__ORIG_JSON__":"Original json file, Crowdsource and tracing see below",
 	"add_layer": "Add Layer",
 	"add_wms_layer_failed": "Error when loading WMS layer",
 	"add_wms_layer_succeeded": "WMS layer successfully loaded",
@@ -280,5 +282,37 @@
 	"wms": "WMS",
 	"wms_max_size_allowed": "WMS max size allowed",
 	"wmsimport_tooltip": "Import external WMS data sources",
-	"yellow": "yellow"
+	"yellow": "yellow",
+
+	"__CHAPTER1__": "Crowdsource",
+		"cs_title":"Sewer network issues",
+		"location":"Location",
+		"description":"Description",
+		"cs_save":"Save",
+		"cs_cancel":"Cancel",
+		"cs_close": "Close",
+		"cs_priority":"Priority",
+		"cs_time":"Time",
+		"cs_status":"Status",
+	  "cs_ok":"OK",
+		"new_issue":"New issue",
+		"find_loc":"Find location based on: ",
+		"click_on_map":"Click on the map",
+		"current_device":"Current device location",
+		"cs_previous":"Previous",
+		"cs_next":"Next",
+
+
+	"__CHAPTER2__": "TRACING",
+		"tracer_title": "Trace sewers",
+		"Appurtenance_ID_lbl":"Appurtenance ID",
+		"start_new_trace_btn":"Start a new trace",
+		"choose_appurtenance_p":"Choose a appurtenance on the map by clicking on it.",
+		"trace_direction_lbl":"In what direction do you want to trace:",
+		"downstream_lbl":"Downstream",
+		"upstream_lbl":"Upstream",
+		"clear_btn": "Clear",
+		"execute_btn":"Execute",
+		"no_appurtenance_found":"No Appurtenance in the neighborhood of the clicked point",
+		"rio_nodeMsg": "Choose a point on the map"
 }

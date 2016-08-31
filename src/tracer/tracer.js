@@ -34,7 +34,7 @@ function($scope, $http) {
 
       var restUri = envplus_rest_Url + "?" + $.param(data);
 
-        $.ajax(restUri)
+      $.ajax(restUri)
           .done(function( data ) {
             if( typeof(data.results) === "undefined" ){
                 callback( [] );
@@ -43,12 +43,12 @@ function($scope, $http) {
                 return {id: val.id , xy: val.geometry.coordinates }
             });
             callback( results );
-          });
+        });
 
     }
 
     tracer.getTrace = function( nodeID, streamDirection, callback ){
-        var tracerUri = tracerUrl +"/"+ streamDirection +"/"+ nodeID;
+        var tracerUri = tracerBaseUrl +"/"+ streamDirection +"/"+ nodeID;
 
         $.ajax(tracerUri)
           .done(function( data ) {

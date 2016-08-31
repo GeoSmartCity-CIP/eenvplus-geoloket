@@ -4,8 +4,7 @@
      <li >
 
       <div class="callout-danger margin-left margin-right" ng-show="gscWarning" >
-         <p><strong>Error:</strong>
-          Can not conect to Crowdsource server, the api says: <em>{{gscWarning}}<em> </p>
+         <p>Error: Can not conect to Crowdsource server, the api says: <em>{{gscWarning}}<em> </p>
       </div>
 
       <tink-accordion data-start-open="false" data-one-at-a-time="true" ng-hide="gscWarning" >
@@ -13,18 +12,18 @@
           <tink-accordion-panel data-is-collapsed="true" >
             <data-header> {{event.description | limitTo:16 }}{{ event.description.length > 16 ? ' ...':''}} </data-header>
             <data-content>
-                <div ng-click="zoomTo(event.location)">
-                      <h5> <span class="margin-bottom fa fa-search"></span> {{event.description}}</h5>
-                </div>
+                <p ng-click="zoomTo(event.location)">
+                      <h5> <span class="margin-bottom"></span> {{event.description}}</h5>
+                </p>
+                <p>
+                <span translate>cs_time</span>: <em>{{ event.datetime | date:'yyyy-MM-dd HH:mm:ss' }}</em> <br/>
+                <span translate>cs_status</span>: <em>{{ event.status }}</em> <br/>
+                <span translate>cs_priority</span>: <em>{{ event.priority }}</em> <br/>
 
-                <span>Time: <em>{{ event.datetime | date:'yyyy-MM-dd HH:mm:ss' }}</em></span><br/>
-                <span>Status: <em>{{ event.status }}</em></span><br/>
-                <span>Prioriy: <em>{{ event.priority }}</em></span><br/>
-
-                <img ng-src="{{mediafile}}" class="img-responsive" alt="media" 
+                <img ng-src="{{mediafile}}" class="img-responsive" alt="media"
                   ng-repeat="mediafile in event.media"
                   ng-click="maximizeImage(event.description ,mediafile)" onerror="imgError(this);" />
-
+                </p>
             </data-content>
           </tink-accordion-panel>
          </span>
@@ -34,12 +33,11 @@
      <li >
         <hr/><!--paging if more then 5 records-->
         <div class="margin-left" ng-show="numberOfPages() > 1"  >
-            <button type="button" ng-disabled="page == 0" ng-click="page=page-1">
-                Previous
+            <button type="button" ng-disabled="page == 0" ng-click="page=page-1" >
+              <span translate>cs_previous</span>
             </button>
             <button type="button" ng-disabled="page >= events.length/pageSize - 1"
-                    ng-click="page=page + 1">
-                Next
+                    ng-click="page=page + 1" > <span translate>cs_next</span>
             </button>
             {{page+1}}/{{numberOfPages()}}
         </div>

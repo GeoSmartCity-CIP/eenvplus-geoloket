@@ -25,23 +25,21 @@ cs.zoomTo = function(x, y, zoom){
 
 };
 
-cs.getMyPosition = function(callback){
+cs.getMyPosition = function(callback, errorcallback ){
     if (navigator.geolocation && typeof(callback) === "function" ) {
         navigator.geolocation.getCurrentPosition(
          function(pos){
              var y = pos.coords.latitude;
              var x = pos.coords.longitude;
              callback(x,y);
-          },
+         },
          function(err){
-           alert( "No gps position available: " + err.message );
-           throw err;
+           errorcallback( err.message);
          },   { enableHighAccuracy: true, timeout: 3000 }
         );
     }
     else {
-      alert( "No gps position available" );
-      throw "No gps position available";
+       errorcallback( "No gps position available");
     }
 };
 
@@ -69,7 +67,7 @@ cs.styleCache = {
       }),
       stroke: new ol.style.Stroke({
         color: '#FFF',
-        width: 0.4
+        width: 1
       })
     })
   }),

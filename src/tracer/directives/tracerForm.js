@@ -5,7 +5,7 @@ tracerApp.controller('tracerFormController', ['$scope', 'ngDialog',
         $scope.rio_node = null;
         $scope.rio_nodeFound = false;
         $scope.tracingActive = false;
-        $scope.rio_nodeMsg = "Choose a point on the map";
+        $scope.rio_nodeMsg = "rio_nodeMsg";
       }
       reset();  //call once to set on load
 
@@ -40,13 +40,13 @@ tracerApp.controller('tracerFormController', ['$scope', 'ngDialog',
             $scope.rio_node = data[0].id;
             $scope.rio_nodeFound = true;
             var xy = data[0].xy;
-            $scope.rio_nodeMsg = "Point with id " + $scope.rio_node
+            $scope.rio_nodeMsg = ""+ $scope.rio_node
             tracerlayer.newTraceStart( xy );
          }
          else {
             $scope.rio_node = null;
             $scope.rio_nodeFound = false;
-            $scope.rio_nodeMsg = "No Appurtenance in the neighborhood of the clicked point";
+            $scope.rio_nodeMsg = "no_appurtenance_found";
          }
          $scope.$apply();
       }

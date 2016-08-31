@@ -1,15 +1,15 @@
 <div >
 
   <div class="form-group">
-    <p >Locatie: {{xy[1] | number:4 }} ° - {{xy[0] | number:4 }} ° </p>
+    <p > <span translate>location</span>: {{xy[1] | number:4 }} ° - {{xy[0] | number:4 }} ° </p>
 
     <div ng-class="description.length < 1 ? 'has-error': 'has-success'" >
-    <label for="info-text">Description: </label>
-      <textarea   ng-model="description" id="info-text" rows="3">
+    <label for="info-text" translate>description</label>:
+      <textarea ng-model="description" id="info-text" rows="3">
       </textarea>
     </div>
 
-    <label for="prioritySelect">Priority : </label>
+    <label for="prioritySelect" translate>cs_priority</label>:
     <select name="prioritySelect" id="prioritySelect" ng-model="priority">
         <option ng-repeat="priorityOption in priorities"
                 value="{{priorityOption}}">{{priorityOption}}</option>
@@ -20,6 +20,8 @@
   </div>
 
   <hr/>
-  <button ng-disabled="description.length < 1" data-ng-click="ok()" >Save</button>
-  <button data-ng-click="cancel()">Cancel</button>
+  <button ng-disabled="description.length < 1" data-ng-click="ok()" translate>
+      <span translate>cs_save<span></button>
+  <button data-ng-click="cancel()" translate>
+      <span translate>cs_cancel</span> </button>
 </div>

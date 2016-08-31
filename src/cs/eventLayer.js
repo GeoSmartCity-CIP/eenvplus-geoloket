@@ -69,7 +69,7 @@ cs.addEventLayer = function(){
 cs.addPopover = function( targetLyr, targetAttr ){
       var node = document.createElement('div');
       node.setAttribute("style", "background-color: lightyellow; margin: 5px;");
-      var popup = new ol.Overlay({ element: node });
+      var popup = new ol.Overlay({ element: node , offset: [10,0]});
       cs.map.addOverlay(popup);
 
       var displayFeatureInfo = function(pixel) {

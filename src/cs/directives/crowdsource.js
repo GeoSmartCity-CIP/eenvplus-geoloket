@@ -7,11 +7,16 @@ cs.controller('crowdsourceController', ['$scope', 'ngDialog', function($scope, n
       $scope.gettingPosition = false;
 
       $scope.forMyPosition = function() {
-           $scope.gettingPosition = true;
-           if( evt.listener ) {
+          $scope.gettingPosition = true;
+          if( evt.listener ) {
                 cs.map.un('click' , evt.listener );
-           }
-           cs.getMyPosition( eventForm );
+          }
+          cs.getMyPosition( eventForm,  function (err) {
+            $scope.gettingPosition = false;
+            $scope.$apply();
+            alert(err);
+          });
+
         };
 
       $scope.positionFromMap = function () {

@@ -3,21 +3,21 @@
         <div ng-hide="creatingEvent" >
             <p>
                <button href="" class="margin-left margin-top btn-primary"
-                       ng-click="creatingEvent = true" >New issue </button>
+                       ng-click="creatingEvent = true" ><span translate>new_issue</span></button>
             </p>
             <p><events ></events><p>
         </div>
 
         <div ng-show="creatingEvent" class="margin-left margin-top" >
-            <h4>New Issue</h4>
-            <p>Find location based on: </p>
+            <h4 translate>new_issue</h4>
+            <p translate>find_loc</p>
             <p> <button type="button" ng-click="forMyPosition()" class="margin-right" ng-disabled="gettingPosition" >
-                <span class="fa fa-crosshairs" ></span> Current device location</button> </p>
+                <span translate>current_device</span></button> </p>
             <p> <button type="button" ng-click="positionFromMap()" class="margin-right" ng-disabled="gettingPosition" >
-                <span class="fa fa-map-marker" ></span> Click on the map</button> </p>
+                <span translate>click_on_map<span></button> </p>
             <hr/>
             <p>  <button type="button"  ng-click="cancel()" class="margin-right" >
-                <span class="fa fa-times-circle" ></span> Close</button> </p>
+                <span translate>cs_close</span></button> </p>
         </div>
 
 </div>
