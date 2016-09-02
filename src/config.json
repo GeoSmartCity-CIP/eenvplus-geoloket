@@ -1,6 +1,6 @@
 {
     "csurl": "//o-gsc.vmm.be/gsc-crowdsourcing-services",
-    "tracerUrl": "//o-gsc.vmm.be/gsc-tracing-services",
+    "tracerUrl": "//o-gsc.vmm.be/gsc-tracing-services/tracing",
     "envplus_rest_Url": "//o-gsc.vmm.be/api/rest/services/ech/MapServer/identify",
     "riolinkNodeLayer": "be.vmm.eenvplus.sdi.model.KoppelPunt"
 }
