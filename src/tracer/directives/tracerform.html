@@ -1,38 +1,43 @@
 <div ng-controller="tracerFormController">
 
-  <div class="form-group">
+    <div class="form-group">
 
-  <div>
-      <span translate>Appurtenance_ID_lbl</span>: <em translate >{{ rio_nodeMsg | translate }} </em>
-  </div>
-   <div>
-      <button type="button" class="btn-primary" ng-click="chooseNode()" translate>
-       start_new_trace_btn</button>
-       <div class="callout" ng-show="tracingActive" >
-         <p translate>choose_appurtenance_p</p>
-       </div>
-   </div><br/>
+        <div>
+            <span translate>Appurtenance_ID_lbl</span>: <em translate>{{ rio_nodeMsg | translate }} </em>
+        </div>
+        <div>
+            <button type="button" class="btn-primary" ng-click="chooseNode()" translate>
+                start_new_trace_btn
+            </button>
+            <div class="callout" ng-show="tracingActive">
+                <p translate>choose_appurtenance_p</p>
+            </div>
+        </div>
+        <br/>
 
-   <div>
-     <strong> <div translate>trace_direction_lbl</div> </strong>
-      <span class="radio">
+        <div>
+            <strong translate>
+                trace_direction_lbl
+            </strong>
+            <span class="radio">
         <input type="radio" id="upstream" value="upstream" ng-model="direction"/>
         <label for="upstream" translate>upstream_lbl</label>
       </span>
-      <span class="radio">
+            <span class="radio">
         <input type="radio" id="downstream" value="downstream" ng-model="direction"/>
         <label for="downstream" translate>downstream_lbl</label>
-      <span>
+      </span>
+        </div>
+
+        <hr/>
+
+        <div style="position: relative; padding-bottom: 15px;">
+            <button type="button" class="btn-primary" style="position: absolute; right: 90px; top: 5px;"
+                    ng-click="traceclear()" translate>clear_btn
+            </button>
+            <button type="button" class="btn-primary" style="position: absolute; right: 10px; top: 5px;"
+                    ng-disabled="!rio_nodeFound" ng-click="tracecommit()" translate>execute_btn
+            </button>
+        </div>
     </div>
-
-    <hr/>
-
-    <div style="position: relative; padding-bottom: 15px;" >
-      <button type="button" class="btn-primary" style="position: absolute; right: 90px; top: 5px;"
-        ng-click="traceclear()" translate>clear_btn</button>
-      <button type="button" class="btn-primary" style="position: absolute; right: 10px; top: 5px;"
-              ng-disabled="!rio_nodeFound" ng-click="tracecommit()" translate>execute_btn</button>
-    </div>
-  </div>
-
 </div>

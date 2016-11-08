@@ -6,7 +6,7 @@ tracerApp.controller('tracerFormController', ['$scope', 'ngDialog',
         $scope.rio_nodeFound = false;
         $scope.tracingActive = false;
         $scope.rio_nodeMsg = "rio_nodeMsg";
-      }
+      };
       reset();  //call once to set on load
 
       $scope.tracecommit = function () {
@@ -22,6 +22,11 @@ tracerApp.controller('tracerFormController', ['$scope', 'ngDialog',
       };
 
       $scope.chooseNode = function(){
+          if (tracerlayer.Layer == undefined) {
+              tracerlayer.init($scope.map);
+          }
+          $scope.traceclear();
+
            $("body").css( "cursor", "crosshair");
            $scope.tracingActive = true;
 
@@ -32,7 +37,7 @@ tracerApp.controller('tracerFormController', ['$scope', 'ngDialog',
                $scope.$apply();
                tracer.getNodeAtXY(evt.coordinate[0], evt.coordinate[1], traceCallback);
            });
-       }
+       };
 
       // callback of mapEvent that gets KoppelPunt at xy
       var traceCallback= function(data){
@@ -40,7 +45,7 @@ tracerApp.controller('tracerFormController', ['$scope', 'ngDialog',
             $scope.rio_node = data[0].id;
             $scope.rio_nodeFound = true;
             var xy = data[0].xy;
-            $scope.rio_nodeMsg = ""+ $scope.rio_node
+            $scope.rio_nodeMsg = ""+ $scope.rio_node;
             tracerlayer.newTraceStart( xy );
          }
          else {
@@ -61,7 +66,6 @@ tracerApp.directive('tracerform', function() {
             },
       templateUrl: 'tracer/directives/tracerform.html',
       link: function (scope) {
-          tracerlayer.init(scope.map);
       }
     };
 });
