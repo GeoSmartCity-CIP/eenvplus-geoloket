@@ -3,6 +3,7 @@
 cs.init = function( map ){
     cs.map = map;
     cs.addEventLayer();
+    cs.updateEventData();
 };
 
 cs.zoomTo = function(x, y, zoom){

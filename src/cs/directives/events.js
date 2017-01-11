@@ -32,7 +32,6 @@ cs.controller('eventController', ['$scope', function($scope) {
              $scope.gscWarning = err.statusText ;
         });
     }
-    cs.updateEventData();
 }]);
 
 cs.directive('events', function() { 

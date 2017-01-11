@@ -60,10 +60,7 @@ cs.addEventLayer = function(){
     });
     cs.addPopover( cs.eventLayer,'description' );
 
-    //to prevent a conflict with layermanager, delay adding to map
-    setTimeout(function(){
-        cs.map.addLayer( cs.eventLayer );
-    }, 1000);
+    cs.map.addLayer( cs.eventLayer );
 }
 
 cs.addPopover = function( targetLyr, targetAttr ){

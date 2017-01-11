@@ -1,70 +1,85 @@
 /*globals cs, $ */
 
-cs.controller('crowdsourceController', ['$scope', 'ngDialog', function($scope, ngDialog) {
+cs.controller('crowdsourceController', ['$scope', 'ngDialog', function ($scope, ngDialog) {
 
-      var evt = {};
-      $scope.creatingEvent = false;
-      $scope.gettingPosition = false;
+    var evt = {};
+    $scope.creatingEvent = false;
+    $scope.gettingPosition = false;
 
-      $scope.forMyPosition = function() {
-          $scope.gettingPosition = true;
-          if( evt.listener ) {
-                cs.map.un('click' , evt.listener );
-          }
-          cs.getMyPosition( eventForm,  function (err) {
+    $scope.forMyPosition = function () {
+        $scope.gettingPosition = true;
+        if (evt.listener) {
+            cs.map.un('click', evt.listener);
+        }
+        cs.getMyPosition(eventForm, function (err) {
             $scope.gettingPosition = false;
             $scope.$apply();
             alert(err);
-          });
+        });
 
-        };
+    };
 
-      $scope.positionFromMap = function () {
-           $scope.gettingPosition = true;
-           evt = cs.positionFromMap( eventForm );
-        };
+    $scope.positionFromMap = function () {
+        $scope.gettingPosition = true;
+        evt = cs.positionFromMap(eventForm);
+    };
 
-      $scope.cancel = function () {
-           if( evt.listener ) {
-                cs.map.un('click' , evt.listener );
-           }
-           $('body').css("cursor",'default')
-           $scope.creatingEvent = false;
-           $scope.gettingPosition = false;
-        };
+    $scope.cancel = function () {
+        if (evt.listener) {
+            cs.map.un('click', evt.listener);
+        }
+        $('body').css("cursor", 'default')
+        $scope.creatingEvent = false;
+        $scope.gettingPosition = false;
+    };
 
-      var eventForm = function(x,y, cancel) {
-           $scope.gettingPosition = false;
-           $scope.xy =  [x,y];
+    $scope.addLaag = function () {
+        cs.addEventLayer();
+    };
 
-           ngDialog.open({
-                   template: 'cs/directives/createEvent.html',
-                   className: 'ngdialog-theme-default',
-                   controller:  'createEventCtrl',
-                   closeByEscape: false,
-                   closeByDocument : false,
-                   scope: $scope,
-                   preCloseCallback: function (value) {
-                      $scope.creatingEvent = value;
-                      $scope.gettingPosition = false;
-                   }
-               });
-      };
+    var eventForm = function (x, y, cancel) {
+        $scope.gettingPosition = false;
+        $scope.xy = [x, y];
 
-      cs.newEvent = function(){
-          $scope.creatingEvent  = true;
-      }
+        ngDialog.open({
+            template: 'cs/directives/createEvent.html',
+            className: 'ngdialog-theme-default',
+            controller: 'createEventCtrl',
+            closeByEscape: false,
+            closeByDocument: false,
+            scope: $scope,
+            preCloseCallback: function (value) {
+                $scope.creatingEvent = value;
+                $scope.gettingPosition = false;
+            }
+        });
+    };
+
+    cs.newEvent = function () {
+        $scope.creatingEvent = true;
+    }
 }]);
 
-cs.directive('crowdsource', function() {
-  return {
-    restrict: 'E',
-    scope: {
+cs.directive('crowdsource', function () {
+    return {
+        restrict: 'E',
+        scope: {
             map: '=csmap'
-          },
-    templateUrl: 'cs/directives/crowdsource.html' ,
-    link: function (scope) {
-      cs.init( scope.map );
-    }
-  };
+        },
+        templateUrl: 'cs/directives/crowdsource.html',
+        link: function (scope) {
+            scope.delayInit = function() {
+                if (scope.map.getLayers().getLength() < 5) {
+                    setTimeout(function () {
+                        scope.delayInit();
+                    }, 1000);
+                }
+                else {
+                    cs.init(scope.map);
+                }
+            };
+
+            scope.delayInit();
+        }
+    };
 });
